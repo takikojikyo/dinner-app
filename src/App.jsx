@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import HostHome from './HostHome';
+
+
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <div className="App">
+      <BrowserRouter>
+        <Routes>
+          {/* 初回起動・作る人用Home */}
+          <Route path="/" element={<HostHome />} />
+
+          {/* 作る人の4ステップ設定 */}
+          <Route path="/creator/step1" element={<CreatorStep1 />} />
+          <Route path="/creator/step2" element={<CreatorStep2 />} />
+          <Route path="/creator/step3" element={<CreatorStep3 />} />
+          <Route path="/creator/step4" element={<CreatorStep4 />} />  
+
+          {/* 招待を受けた人用Home */}
+          <Route path="/home/guest" element={<GuestHome />} />
+
+          {/* 食べる人の投票ステップ */}
+          <Route path="/vote/step1" element={<VoteStep1 />} />
+          <Route path="/vote/step2" element={<VoteStep2 />} />
+          <Route path="/vote/step3" element={<VoteStep3 />} />
+          <Route path="/vote/thanks" element={<VoteThanks />} />
+
+          {/* Not Found */}
+          <Route path="*" element={<h1>Not Found Page</h1>} />
+        </Routes>
+      </BrowserRouter>
+    </div>
   )
 }
 
