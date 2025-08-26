@@ -1,17 +1,16 @@
 
+import Header_Host from './Header_Host';
+import './HostHome.css';
 
-const HostHome=()=>{
 
-  return(
+
+const HostHome = () => {
+
+  return (
 
     <div className="hosthome">
-      <header>
-
-      </header>
-      <body>
-        <div className="HeaderTop"></div>
-        <div className="HeaderBottom"></div>
-      </body>
+      <Header_Host/>
+      <main></main>
       <footer></footer>
     </div>
   );

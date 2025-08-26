@@ -1,0 +1,100 @@
+
+
+.HeaderTop{
+  background:#FFB534;
+  padding: 3px 0;
+}
+.header_app_title{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background:rgba(253,253,253,0.8);
+   padding: 0.3em 1em;   
+  border-radius: 8px;
+  margin-bottom: 5px;
+}
+.header_app_title img{
+  width: 30px;
+}
+.header_app_title h1{
+  margin: 0;
+  font-size: 16px;
+}
+.header_mode{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.header_mode img{
+  width: 25px;
+}
+.header_mode h2{
+  font-size: 14px;
+}
+
+.HeaderBottom{
+  background: #FFD386;
+  position: relative;
+  padding: 5px 0;
+}
+.HeaderBottom .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.MenuToggle{
+  position: relative;
+  width: 45px;
+  height: 45px;
+  transition: all 0.5s;
+  cursor: pointer;
+  background-color: #FDFDFD;
+  border-radius: 10px;
+  z-index: 100;
+}
+.MenuToggle span{
+  display: inline-block;
+  width: 60%;
+  height: 2px;
+  background-color: #544E45;
+  transition: all 0.5s;
+  position: absolute;
+  right: 20%;
+}
+.MenuToggle span:nth-child(1){
+  top: 25%;
+}
+.MenuToggle span:nth-child(2){
+  top: 50%;
+}
+.MenuToggle span:nth-child(3){
+  top: 75%;
+}
+.open.MenuToggle span:nth-child(1){
+  transform: rotate(-45deg);
+  top: 50%;
+}
+.open.MenuToggle span:nth-child(2){
+  opacity: 0;
+}
+.open.MenuToggle span:nth-child(3){
+  transform: rotate(45deg);
+  top: 50%;
+}
+
+.Toggle_mode{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #C1F2B0;
+  padding: 0.5em; 
+  border-radius: 8px;
+}
+.Toggle_mode .Toggle_mode_img{
+  width: 16px;
+  margin-right: 3px;
+}
+.Toggle_mode p{
+  font-size: 14px;
+}
+
