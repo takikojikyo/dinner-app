@@ -1,0 +1,35 @@
+.ShoppingList{
+margin-top: 24px ;
+margin-bottom: 24px ;
+background: #fdfdfd;
+padding: 30px 10px;
+  border-radius: 8px;
+}
+
+.ShoppingList_items li{
+  text-align: left;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+}
+.ShoppingList_items li.checked  {
+  color: #aaa;
+  text-decoration: line-through;
+}
+.ShoppingList_item_title{
+  display: flex;
+  align-items: center;
+
+}
+.ShoppingList_item_title input{
+  width: 20px;
+  margin-right: 8px;
+}
+.material_list_material_list{
+  background: rgba(193,242,176,0.4);
+  padding: 8px;
+  color: #65B741;
+}
+.material_list_material_list p{
+  font-size: 14px;
+}
