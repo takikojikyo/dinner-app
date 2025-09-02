@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-import { week_menus } from "./menus";
+import { week_menus } from '../../menus';
 
 
 

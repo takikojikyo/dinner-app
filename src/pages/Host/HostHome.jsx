@@ -1,6 +1,6 @@
 
 import { Link } from 'react-router-dom';
-import Header_Host from './Header_Host';
+import Header_Host from '../../components/Header_Host';
 import './HostHome.css';
 import This_Week_Menu from './This_Week_Menu';
 

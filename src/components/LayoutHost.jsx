@@ -1,10 +1,10 @@
 
 import { Outlet, Link } from "react-router-dom";
-import './HostHome.css';
+import '../pages/Host/HostHome.css';
 import './Layout.css';
 
-import HostHome from "./HostHome";
-import ShoppingList from "./ShoppingList";
+import HostHome from "../pages/Host/HostHome";
+import ShoppingList from "../pages/Host/ShoppingList";
 
 import Header_Host from "./Header_Host";
 

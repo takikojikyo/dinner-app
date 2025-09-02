@@ -14,7 +14,7 @@ padding: 30px 10px;
 }
 .ShoppingList_items li.checked  {
   color: #aaa;
-  text-decoration: line-through;
+  background: rgba(0,0,0,0.1);
 }
 .ShoppingList_item_title{
   display: flex;
@@ -26,6 +26,8 @@ padding: 30px 10px;
   margin-right: 8px;
 }
 .material_list_material_list{
+  width: 90%;
+  margin: 0 auto;
   background: rgba(193,242,176,0.4);
   padding: 8px;
   color: #65B741;

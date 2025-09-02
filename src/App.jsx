@@ -1,9 +1,10 @@
 import './App.css';
 import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 
-import HostHome from './HostHome';
-import ShoppingList from './ShoppingList';
-import LayoutHost from './LayoutHost';
+import HostHome from './pages/Host/HostHome';
+import ShoppingList from './pages/Host/ShoppingList';
+import LayoutHost from './components/LayoutHost';
+import CreatorStep1 from './pages/Creator/CreatorStep1';
 
 
 
@@ -19,8 +20,8 @@ function App() {
         </Route>
 
         {/* 作る人の4ステップ設定 */}
-        {/* <Route path="/creator/step1" element={<CreatorStep1 />} />
-          <Route path="/creator/step2" element={<CreatorStep2 />} />
+      <Route path="/creator/step1" element={<CreatorStep1 />} />
+          {/*   <Route path="/creator/step2" element={<CreatorStep2 />} />
           <Route path="/creator/step3" element={<CreatorStep3 />} />
           <Route path="/creator/step4" element={<CreatorStep4 />} />   */}
 
