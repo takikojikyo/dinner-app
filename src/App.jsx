@@ -5,6 +5,8 @@ import HostHome from './pages/Host/HostHome';
 import ShoppingList from './pages/Host/ShoppingList';
 import LayoutHost from './components/LayoutHost';
 import CreatorStep1 from './pages/Creator/CreatorStep1';
+import CreatorStep2 from './pages/Creator/CreatorStep2';
+import CreatorStep3 from './pages/Creator/CreatorStep3';
 
 
 
@@ -15,15 +17,15 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LayoutHost />}>
-          <Route index element={<HostHome />} />          
-          <Route path="shopping-list" element={<ShoppingList />} /> 
+          <Route index element={<HostHome />} />
+          <Route path="shopping-list" element={<ShoppingList />} />
         </Route>
 
         {/* 作る人の4ステップ設定 */}
-      <Route path="/creator/step1" element={<CreatorStep1 />} />
-          {/*   <Route path="/creator/step2" element={<CreatorStep2 />} />
-          <Route path="/creator/step3" element={<CreatorStep3 />} />
-          <Route path="/creator/step4" element={<CreatorStep4 />} />   */}
+        <Route path="/creator/step1" element={<CreatorStep1 />} />
+        <Route path="/creator/step2" element={<CreatorStep2 />} />
+        <Route path="/creator/step3" element={<CreatorStep3 />} />
+        {/*     <Route path="/creator/step4" element={<CreatorStep4 />} />   */}
 
         {/* 招待を受けた人用Home */}
         {/* <Route path="/home/guest" element={<GuestHome />} /> */}

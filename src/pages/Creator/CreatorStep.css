@@ -3,18 +3,32 @@
   border-radius: 8px;
   padding: 24px;
 }
-
-
-/* CreatorStep1 */
-.CreateStep1 button{
+.CreateStep_inner h3{
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.CreateStep_inner button{
   font-size: 18px;
   font-weight: bold;
   padding: 10px;
   border-radius: 8px;
   transition: all 0.5s;
 }
-.CreateStep1-img{
-  width: 150px;
+
+.CreateStepbutton{
+  border: 3px solid #FFB534;
+  background: #FFB534;
+  width: 100%;
+}
+.CreateStepbutton:hover{
+  background:rgba(255,181,52,0.6);
+}
+
+
+
+/* CreatorStep1 */
+.CreateStep-img{
+  width: 130px;
   margin-top: 56px;
 }
 
@@ -35,13 +49,7 @@
   border-radius: 3px;
   border: 1px solid #544E45;
 }
-.CreateStep1_box1 button{
-  border: 3px solid #FFB534;
-  background: #FFB534;
-}
-.CreateStep1_box1 button:hover{
-  background:rgba(255,181,52,0.6);
-}
+
 .CreateStep1_box2 button{
   width: 100%;
   border: 3px solid #FFB534;
@@ -51,4 +59,66 @@
     background:#65B741;
   border-color: #65B741;
   color: #fdfdfd;
+}
+
+
+/* CreatorStep2 */
+.CreateStep2_tex1{
+  font-size: 14px;
+  width: 80%;
+  text-align: left;
+  margin: 0 auto 56px;
+}
+.CreateStep2_box1{
+  margin-bottom: 56px;
+}
+.CreateStep2_box1 li:not(:last-of-type){
+  margin-bottom: 24px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #ccc;
+}
+.CreateStep2_box1 li img{
+  width: 100px;
+}
+.CreateStep2_box1 li p{
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+.CreateStep2_box1 li input{
+  transform: scale(1.2); 
+  margin-left: 24px;
+  margin-right: 3px; 
+}
+.CreateStep2_box1 li label{
+  font-size: 18px;
+}
+
+
+/* CreatorStep3 */
+.CreateStep3_title{
+  display: flex;
+  align-items: center;
+}
+.CreateStep3_title img{
+  width: 100px;
+  margin-bottom: 16px;
+}
+.CreateStep3_list li{
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 8px;
+}
+.CreateStep3_list input{
+  transform: scale(1.2); 
+  }
+.CreateStep3_list p{
+  font-size: 18px;
+  font-weight: bold;
+}
+.CreateStep3_box1,.CreateStep3_box2{
+  padding-bottom: 36px;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 36px;
 }
