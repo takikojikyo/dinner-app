@@ -113,6 +113,18 @@ const CreatorStep3 = () => {
                 <input type="checkbox" />
                 <p>お好み焼き</p>
               </li>
+              <li>
+                <input type="checkbox" />
+                <p>焼きそば</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>焼きうどん</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>鍋</p>
+              </li>
 
               <li>
                 <input type="checkbox" />
@@ -183,10 +195,7 @@ const CreatorStep3 = () => {
                 <input type="checkbox" />
                 <p>キーマカレー</p>
               </li>
-              <li>
-                <input type="checkbox" />
-                <p>麻婆豆腐</p>
-              </li>
+
               <li>
                 <input type="checkbox" />
                 <p>マーボーナス</p>
@@ -291,6 +300,10 @@ const CreatorStep3 = () => {
                 <input type="checkbox" />
                 <p>ペペロンチーノ</p>
               </li>
+              <li>
+                <input type="checkbox" />
+                <p>ラーメン</p>
+              </li>
 
             </ul>
           </div>
@@ -323,6 +336,10 @@ const CreatorStep3 = () => {
               </li>
               <li>
                 <input type="checkbox" />
+                <p>鮭のムニエル</p>
+              </li>
+              <li>
+                <input type="checkbox" />
                 <p>鮭の西京焼き</p>
               </li>
               <li>
@@ -336,6 +353,10 @@ const CreatorStep3 = () => {
               <li>
                 <input type="checkbox" />
                 <p>鮭のカレーピカタ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>鮭とほうれん草のクリーム煮</p>
               </li>
               <li>
                 <input type="checkbox" />
@@ -359,6 +380,26 @@ const CreatorStep3 = () => {
               </li>
               <li>
                 <input type="checkbox" />
+                <p>サバの煮付け</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>さばのしょうが煮</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>さば缶カレー</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>さんまの塩焼き</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>サンマの煮付け</p>
+              </li>
+              <li>
+                <input type="checkbox" />
                 <p>ぶりの照り焼き</p>
               </li>
               <li>
@@ -372,6 +413,10 @@ const CreatorStep3 = () => {
               <li>
                 <input type="checkbox" />
                 <p>カツオのカルパッチョ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>あじの塩焼き</p>
               </li>
               <li>
                 <input type="checkbox" />
@@ -399,7 +444,23 @@ const CreatorStep3 = () => {
               </li>
               <li>
                 <input type="checkbox" />
+                <p>さわらの蒲焼き</p>
+              </li>
+              <li>
+                <input type="checkbox" />
                 <p>たらのムニエル</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>たらの野菜あんかけ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>たらのホイル焼き</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>たらのトマト煮込み</p>
               </li>
               <li>
                 <input type="checkbox" />
@@ -411,7 +472,23 @@ const CreatorStep3 = () => {
               </li>
               <li>
                 <input type="checkbox" />
+                <p>鯛のカルパッチョ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
                 <p>鯛のアクアパッツァ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>鯛の煮付け</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>鯛のあら煮</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>白身魚のフライ</p>
               </li>
               <li>
                 <input type="checkbox" />
@@ -423,7 +500,83 @@ const CreatorStep3 = () => {
               </li>
               <li>
                 <input type="checkbox" />
+                <p>白身魚のソテー</p>
+              </li>
+              <li>
+                <input type="checkbox" />
                 <p>カレイの煮つけ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>カレイの唐揚げ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>鮎の塩焼き</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>パエリア</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>シーフードカレー</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>いか焼き</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>いか野菜炒め</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>いかと大根の煮物</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>いかフライ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>いかのマリネ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>えびフライ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>えびチリ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>えびマヨネーズ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>ガーリックシュリンプ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>海老ピラフ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>えびとアボカドのクリームパスタ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>たこの唐揚げ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>たこ焼き</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>たこの炊き込みご飯</p>
               </li>
               <li>
                 <input type="checkbox" />
@@ -431,7 +584,39 @@ const CreatorStep3 = () => {
               </li>
               <li>
                 <input type="checkbox" />
+                <p>あさりと筍の炊き込みご飯</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>あさりときのこのバター醤油炒め</p>
+              </li>
+              <li>
+                <input type="checkbox" />
                 <p>あさりの和風スパゲティ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>ボンゴレビアンコ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>クラムチャウダー</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>かきフライ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>明太子のパスタ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>明太子だし巻きたまご</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>明太マヨうどん</p>
               </li>
             </ul>
           </div>
@@ -444,9 +629,114 @@ const CreatorStep3 = () => {
             <ul className='CreateStep3_list'>
               <li>
                 <input type="checkbox" />
-                <p>カレー</p>
+                <p>おでん</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>チーズオムレツ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>スパニッシュオムレツ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>ひき肉とポテトのオムレツ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>オムライス</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>だし巻き卵</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>ニラ玉</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>かに玉炒め</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>スコッチエッグ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>レンジ茶碗蒸し</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>天津飯</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>豆腐の卵あんかけ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>麻婆豆腐</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>肉豆腐</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>湯豆腐</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>揚げ出し豆腐</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>ゴーヤチャンプル</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>豆腐ステーキ</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>シーフードグラタン</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>ソーセージとポテトのチーズ焼き</p>
+              </li>
+              <li>
+                <input type="checkbox" />
+                <p>白菜とじゃがいものクリーム煮</p>
               </li>
             </ul>
+          </div>
+
+          <div className="CreateStep3_box4">
+            <div className="CreateStep3_box4_item1">
+              <h4>自分でメニューを登録</h4>
+              <input type="text" />
+            </div>
+            <div className="CreateStep3_box4_item2">
+              <h4>料理カテゴリ</h4>
+              <select name="CreateStep3_meal_type">
+                <option value="" disabled selected>カテゴリを選択</option>
+                <option value="meat">肉料理</option>
+                <option value="fish">魚料理</option>
+                <option value="other">その他</option>
+              </select>
+            </div>
+            <div className="CreateStep3_box4_item3">
+              <h4>材料</h4>
+              <input type="text" placeholder="材料を入力" />
+              
+              <div className="CreateStep3_box4_button_area">
+                <button className='CreateStep3_box4_button1'>材料を追加</button>
+                <button className='CreateStep3_box4_button2'>メニューを登録</button>
+              </div>
+            </div>
           </div>
 
 

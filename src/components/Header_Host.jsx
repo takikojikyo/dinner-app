@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-const Header_Host = () => {
+const Header_Host = ({setIsHost}) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
@@ -28,7 +28,7 @@ const Header_Host = () => {
               <span></span>
             </div>
 
-            <button className="Toggle_mode">
+            <button className="Toggle_mode" onClick={()=>{setIsHost(false)}}>
               <img className="Toggle_mode_img" src="/m3.png" alt="" />
               <p>食べる人モード切替</p>
               <img className="arrow" src="/arrow2.png" alt="" />
