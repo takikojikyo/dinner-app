@@ -20,7 +20,7 @@ const CreatorStep2 = () => {
           <img src="/step1.png" alt="ステップ" />
           <h3>1週間の献立バランスを決めよう！</h3>
 
-          <p className="CreateStep2_tex1">
+          <p className="CreateStep_tex1">
             ※合計で7日になるように調整しましょう。
             <br />肉料理：〇日
             <br />魚介類：〇日

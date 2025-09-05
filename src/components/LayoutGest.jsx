@@ -9,10 +9,10 @@ import ShoppingList from "../pages/Host/ShoppingList";
 import Header_Host from "./Header_Host";
 
 
-const LayoutHost = ({setIsHost}) => {
+const LayoutGest = () => {
   return (
-    <div className="hosthome">
-      <Header_Host setIsHost={setIsHost}/>
+    <div className="gesthome">
+      <Header_Host />
       <main>
         <Outlet />
       </main>
@@ -23,4 +23,4 @@ const LayoutHost = ({setIsHost}) => {
   );
 };
 
-export default LayoutHost;
+export default LayoutGest;
