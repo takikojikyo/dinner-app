@@ -3,16 +3,15 @@ import { Outlet, Link } from "react-router-dom";
 import '../pages/Host/HostHome.css';
 import './Layout.css';
 
-import HostHome from "../pages/Host/HostHome";
-import ShoppingList from "../pages/Host/ShoppingList";
+import Header_Gest from "./Header_Gest";
 
-import Header_Host from "./Header_Host";
+
 
 
 const LayoutGest = () => {
   return (
     <div className="gesthome">
-      <Header_Host />
+      <Header_Gest />
       <main>
         <Outlet />
       </main>

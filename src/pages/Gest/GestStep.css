@@ -1,0 +1,38 @@
+.GestStep_inner{
+  margin-top: 24px;
+  background-color: #fdfdfd;
+  border-radius: 8px;
+  padding: 24px;
+}
+.GestStep_inner h3{
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+.GestStep_inner button{
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 8px;
+  transition: all 0.5s;
+}
+
+.GestStepbutton{
+  border: 3px solid #FFB534;
+  background: #FFB534;
+  width: 100%;
+}
+.GestStepbutton:hover{
+  background:rgba(255,181,52,0.6);
+}
+.GestStep_inner input{
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #544E45;
+}
+
+.GestStep_inner select{
+  width: 100%;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #544E45;
+}

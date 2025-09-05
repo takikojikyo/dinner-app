@@ -1,8 +1,10 @@
 /* Header_menu */
 .HeaderTop{
-  background:#FFB534;
   padding: 3px 0;
   height: 75px;
+}
+.HeaderTop_Host{
+  background:#FFB534;
 }
 .header_app_title{
   display: inline-flex;
@@ -35,9 +37,12 @@
 
 
 .HeaderBottom{
-  background: #FFD386;
   position: relative;
   padding: 5px 0;
+  height: 55px;
+}
+.HeaderBottom_Host{
+  background: #FFD386;
 }
 .HeaderBottom .container{
     display: flex;
@@ -91,13 +96,15 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #C1F2B0;
-  border: 1px solid #65B741;
   padding: 0.5em; 
   border-radius: 8px;
   transition: all 0.5s;
 }
-.Toggle_mode:hover{
+.Toggle_mode_host{
+   background: #C1F2B0;
+  border: 1px solid #65B741;
+}
+.Toggle_mode_host:hover{
   background: #E1FFD7;
 }
 .Toggle_mode .Toggle_mode_img{
@@ -183,4 +190,27 @@ footer{
 }
 footer p{
   font-size: 14px;
+}
+
+
+
+
+/* Header_Gest */
+.HeaderTop_Gest{
+  background:#65B741;
+  color: #fdfdfd;
+}
+
+.HeaderBottom_Gest{
+  background: #C1F2B0;
+}
+.HeaderBottom_Gest .container{
+    justify-content: flex-end;
+}
+.Toggle_mode_Gest{
+   background: #FFB534;
+  border: 1px solid #FFB534;
+}
+.Toggle_mode_Gest:hover{
+  background:rgba(255,181,52,0.6);
 }

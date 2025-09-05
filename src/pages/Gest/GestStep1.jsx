@@ -1,8 +1,5 @@
 
-import { Link } from 'react-router-dom';
-// import Header_Host from '../../components/Header_Host';
-// import './HostHome.css';
-
+import './GestStep.css';
 
 
 
@@ -10,16 +7,15 @@ const GestStep1 = () => {
 
   return (
 
-    <>
+    <div className="GestStep1">
       <div className="container">
-        <This_Week_Menu />
+        <div className="GestStep_inner">
+          <img src="/step1.png" alt="ステップ" />
 
-        <Link to="shopping-list" className="shopping_list_button">
-          <img src="/5.png" alt="買い物かご" />
-          <p>買い出しリスト</p>
-        </Link>
+        </div>
+
       </div>
-    </>
+    </div>
   );
 }
 

@@ -8,7 +8,7 @@ const Header_Host = ({setIsHost}) => {
   return (
     <>
       <header>
-        <div className="HeaderTop">
+        <div className="HeaderTop HeaderTop_Host">
           <div className="container">
             <button className="header_app_title">
               <img src="/app.png" alt="アプリのアイコン" />
@@ -16,11 +16,11 @@ const Header_Host = ({setIsHost}) => {
             </button>
             <div className="header_mode">
               <img src="/m1.png" alt="フライパン" />
-              <h2>作る人モード</h2>
+              <h2>食べる人モード</h2>
             </div>
           </div>
         </div>
-        <div className="HeaderBottom">
+        <div className="HeaderBottom HeaderBottom_Host">
           <div className="container">
             <div className={`MenuToggle ${isMenuOpen ? "open" : ""}`} onClick={toggleMenu}>
               <span></span>
@@ -28,7 +28,7 @@ const Header_Host = ({setIsHost}) => {
               <span></span>
             </div>
 
-            <button className="Toggle_mode" onClick={()=>{setIsHost(false)}}>
+            <button className="Toggle_mode Toggle_mode_host" onClick={()=>{setIsHost(false)}}>
               <img className="Toggle_mode_img" src="/m3.png" alt="" />
               <p>食べる人モード切替</p>
               <img className="arrow" src="/arrow2.png" alt="" />
