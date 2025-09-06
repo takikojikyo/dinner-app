@@ -1,11 +1,16 @@
 .GestStep_inner{
   margin-top: 24px;
+  margin-bottom: 24px;
   background-color: #fdfdfd;
   border-radius: 8px;
   padding: 24px;
 }
 .GestStep_inner h3{
   font-size: 24px;
+  margin-bottom: 16px;
+}
+.GestStep_inner h4{
+  font-size: 18px;
   margin-bottom: 16px;
 }
 .GestStep_inner button{
@@ -35,4 +40,68 @@
   padding: 5px;
   border-radius: 3px;
   border: 1px solid #544E45;
+}
+
+.GestStep_tex1{
+  font-size: 14px;
+  width: 80%;
+  text-align: left;
+  margin: 0 auto 56px;
+}
+.GestStep_stepimg{
+  margin-bottom: 16px;
+}
+
+
+/* GestStep1 */
+.GestStep1_button{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 4px 4px rgba(0,0,0,0.2);
+}
+.GestStep1_button:not(:last-of-type){
+  margin-bottom: 16px;
+}
+.GestStep1_button_box{
+  display: flex;
+  align-items: center;
+}
+.GestStep1_button_ingredientimg{
+  width: 120px;
+  margin-right: 16px;
+}
+
+
+
+/* GestStep2 */
+.Geststep2_button{
+  width: 100%;
+}
+.Geststep2_button_box{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.Geststep2_button_box img{
+  width: 25px;
+}
+.Geststep2_button_hide{
+  max-height: 0; /* max-heightを0にする、レスポンシブ対応 */
+    overflow: hidden;
+    transition: all 0.3s;
+}
+.This_Week_Menu_list button.open .This_Week_Menu_titlebox>img{
+  transform: rotate(180deg);
+
+}
+.This_Week_Menu_list button.open .This_Week_Menu_hide{
+ margin: 10px auto 0;
+  border-top: 1px solid #ccc;
+  padding-top: 10px;
+    max-height: none;
+    overflow: hidden;
 }

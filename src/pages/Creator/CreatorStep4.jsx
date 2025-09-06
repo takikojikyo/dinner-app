@@ -8,7 +8,7 @@ const CreatorStep4 = () => {
         <img className="CreateStep-img" src="/p1.png" alt="" />
 
         <div className="CreateStep_inner">
-          <img src="/step3.png" alt="ステップ" />
+          <img className="CreateStep_stepimg" src="/step3.png" alt="ステップ" />
           <h3>家族投票の締め切りは何曜日にする？？</h3>
 
           <select name="CreateStep4_day_select" >

@@ -8,7 +8,7 @@ const CreatorStep3 = () => {
         <img className="CreateStep-img" src="/p1.png" alt="" />
 
         <div className="CreateStep_inner">
-          <img src="/step2.png" alt="ステップ" />
+          <img className="CreateStep_stepimg" src="/step2.png" alt="ステップ" />
           <h3>あなたが作れるメニューは何？？</h3>
           <div className="CreateStep3_box1">
             <div className="CreateStep3_title">

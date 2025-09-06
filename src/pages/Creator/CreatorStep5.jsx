@@ -8,7 +8,7 @@ const CreatorStep5 = () => {
         <img className="CreateStep-img" src="/p1.png" alt="" />
 
         <div className="CreateStep_inner">
-          <img src="/step4.png" alt="ステップ" />
+          <img className="CreateStep_stepimg" src="/step4.png" alt="ステップ" />
           <h3>家族投票を行うために、家族とアプリを共有しよう。</h3>
 
           <p className="CreateStep_tex1">下記のURLを家族に送って、アプリをインストールし、家族と共有しよう。</p>

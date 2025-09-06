@@ -12,13 +12,14 @@ import CreatorStep5 from './pages/Creator/CreatorStep5';
 import { useState } from 'react';
 import LayoutGest from './components/LayoutGest';
 import GestStep1 from './pages/Gest/GestStep1';
+import GestStep2 from './pages/Gest/GestStep2';
 
 
 
 
 function App() {
   const [isFirstTime, setIsFirstTime] = useState(true); // 初回フラグ
-  const [isHost, setIsHost] = useState(true);           // ホストかどうか
+  const [isHost, setIsHost] = useState(false);           // ホストかどうか
 
   return (
 
@@ -45,7 +46,7 @@ function App() {
         ) : (
           <Route path="/" element={<LayoutGest setIsHost={setIsHost}  />}>
             <Route index element={<GestStep1 />} />
-            <Route path="shopping-list" element={<ShoppingList />} />
+            <Route path="GestStep2" element={<GestStep2 />} />
           </Route>
         )}
 

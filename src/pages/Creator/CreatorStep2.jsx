@@ -17,7 +17,7 @@ const CreatorStep2 = () => {
         <img className="CreateStep-img" src="/p1.png" alt="" />
 
         <div className="CreateStep_inner">
-          <img src="/step1.png" alt="ステップ" />
+          <img className="CreateStep_stepimg" src="/step1.png" alt="ステップ" />
           <h3>1週間の献立バランスを決めよう！</h3>
 
           <p className="CreateStep_tex1">
