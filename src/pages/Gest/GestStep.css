@@ -80,6 +80,7 @@
 /* GestStep2 */
 .Geststep2_button{
   width: 100%;
+  transition: all 0.5s;
 }
 .Geststep2_button_box{
   display: flex;
@@ -88,17 +89,18 @@
 }
 .Geststep2_button_box img{
   width: 25px;
+  transition: all 0.5s;
 }
 .Geststep2_button_hide{
   max-height: 0; /* max-heightを0にする、レスポンシブ対応 */
     overflow: hidden;
     transition: all 0.3s;
 }
-.This_Week_Menu_list button.open .This_Week_Menu_titlebox>img{
+.Geststep2_button.open .Geststep2_button_box img{
   transform: rotate(180deg);
 
 }
-.This_Week_Menu_list button.open .This_Week_Menu_hide{
+.Geststep2_button.open .Geststep2_button_hide{
  margin: 10px auto 0;
   border-top: 1px solid #ccc;
   padding-top: 10px;
