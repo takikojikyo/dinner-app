@@ -13,6 +13,7 @@ import { useState } from 'react';
 import LayoutGest from './components/LayoutGest';
 import GestStep1 from './pages/Gest/GestStep1';
 import GestStep2 from './pages/Gest/GestStep2';
+import GestStep3 from './pages/Gest/GestStep3';
 
 
 
@@ -47,6 +48,7 @@ function App() {
           <Route path="/" element={<LayoutGest setIsHost={setIsHost}  />}>
             <Route index element={<GestStep1 />} />
             <Route path="GestStep2" element={<GestStep2 />} />
+            <Route path="GestStep3" element={<GestStep3 />} />
           </Route>
         )}
 

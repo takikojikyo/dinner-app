@@ -1,55 +1,54 @@
 .GestStep_inner{
-  margin-top: 24px;
-  margin-bottom: 24px;
-  background-color: #fdfdfd;
-  border-radius: 8px;
-  padding: 24px;
+  margin: var(--space-md) 0;
+  background-color: var(--color-bg);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
 }
 .GestStep_inner h3{
-  font-size: 24px;
-  margin-bottom: 16px;
+  font-size: var(--font-lg);
+  margin-bottom: var(--space-sm);
 }
 .GestStep_inner h4{
-  font-size: 18px;
-  margin-bottom: 16px;
+  font-size: var(--font-md);
+  margin-bottom: var(--space-sm);
 }
 .GestStep_inner button{
-  font-size: 18px;
+  font-size: var(--font-md);
   font-weight: bold;
-  padding: 10px;
-  border-radius: 8px;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
   transition: all 0.5s;
 }
 
 .GestStepbutton{
-  border: 3px solid #FFB534;
-  background: #FFB534;
+  border: 3px solid var(--color-accent);
+  background: var(--color-accent);
   width: 100%;
 }
 .GestStepbutton:hover{
   background:rgba(255,181,52,0.6);
 }
 .GestStep_inner input{
-  padding: 5px;
-  border-radius: 3px;
-  border: 1px solid #544E45;
+  padding: var(--space-xs);
+  border-radius:var(--radius-sm);;
+  border: 1px solid var(--color-text);
 }
 
 .GestStep_inner select{
   width: 100%;
-  padding: 5px;
-  border-radius: 3px;
-  border: 1px solid #544E45;
+  padding: var(--space-xs);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-text);
 }
 
 .GestStep_tex1{
-  font-size: 14px;
+  font-size:  var(--font-sm);
   width: 80%;
   text-align: left;
-  margin: 0 auto 56px;
+  margin: 0 auto var(--space-lg);
 }
 .GestStep_stepimg{
-  margin-bottom: 16px;
+  margin-bottom: var(--space-sm);
 }
 
 
@@ -59,12 +58,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid #ccc;
-  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
   box-shadow: 0 4px 4px rgba(0,0,0,0.2);
 }
 .GestStep1_button:not(:last-of-type){
-  margin-bottom: 16px;
+  margin-bottom: var(--space-sm);
 }
 .GestStep1_button_box{
   display: flex;
@@ -72,7 +71,7 @@
 }
 .GestStep1_button_ingredientimg{
   width: 120px;
-  margin-right: 16px;
+  margin-right: var(--space-sm);
 }
 
 
@@ -81,6 +80,15 @@
 .Geststep2_button{
   width: 100%;
   transition: all 0.5s;
+  border-bottom: 1px solid var(--color-border);
+  font-size: var(--font-md);
+  font-weight: bold;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-md);
+  transition: all 0.5s;
+}
+.Geststep2_button:last-of-type{
+  margin-bottom: 3.5rem;
 }
 .Geststep2_button_box{
   display: flex;
@@ -88,7 +96,7 @@
   justify-content: space-between;
 }
 .Geststep2_button_box img{
-  width: 25px;
+  width: 1.5rem; 
   transition: all 0.5s;
 }
 .Geststep2_button_hide{
@@ -101,9 +109,8 @@
 
 }
 .Geststep2_button.open .Geststep2_button_hide{
- margin: 10px auto 0;
-  border-top: 1px solid #ccc;
-  padding-top: 10px;
+ margin: var(--space-xs) auto 0;
+  padding-top: var(--space-xs);
     max-height: none;
     overflow: hidden;
 }
