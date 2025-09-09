@@ -7,13 +7,13 @@ import { useNavigate, useOutletContext } from 'react-router-dom';
 
 
 
-const GestStep2 = () => {
+const GestStep3 = () => {
   const { category, menu, setMenu, day, setDay, menuList, setMenuList } = useOutletContext();
   const navigate = useNavigate();
 
   const handleAdd = () => {
     setMenuList([...menuList, { menu, day }]);
-    navigate("/GestStep3");
+    navigate("/step3");
   };
 
   const [openIndex, setOpenIndex] = useState(null);
@@ -71,8 +71,6 @@ const GestStep2 = () => {
           }
 
           <button className='GestStepbutton' onClick={handleAdd}>投票に追加</button>
-
-          
         </div>
 
       </div>
@@ -80,4 +78,4 @@ const GestStep2 = () => {
   );
 }
 
-export default GestStep2;
+export default GestStep3;
