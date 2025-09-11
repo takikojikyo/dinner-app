@@ -10,8 +10,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background:rgba(253,253,253,0.8);
-   padding: 0.3em 1em;   
+  background:rgba(253,253,253,0.6);
+   padding: 0 1em;   
   border-radius: var(--radius-md);
   margin-bottom: var(--space-xs);
 }
@@ -39,10 +39,10 @@
 .HeaderBottom{
   position: relative;
   padding: var(--space-xs) 0;
-  height: 55px;
+  height: 60px;
 }
 .HeaderBottom_Host{
-  background: var(--color-accent);
+  background: #FFD386;
 }
 .HeaderBottom .container{
     display: flex;

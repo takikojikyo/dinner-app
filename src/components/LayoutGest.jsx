@@ -12,9 +12,10 @@ import Header_Gest from "./Header_Gest";
 
 const LayoutGest = () => {
   const[category,setCategory]=useState("");
-  const[menu,setMenu]=useState("");
+  const[menu,setMenu]=useState(null);
   const[day,setDay]=useState("");
   const[menuList,setMenuList]=useState([]);
+  const [editingIndex,setEditingIndex]=useState();
 
   return (
     <div className="gesthome">
@@ -26,7 +27,8 @@ const LayoutGest = () => {
             category,setCategory,
             menu,setMenu,
             day,setDay,
-            menuList,setMenuList
+            menuList,setMenuList,
+            editingIndex,setEditingIndex
           }
         }
         />
