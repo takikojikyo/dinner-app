@@ -1,78 +1,81 @@
-
-import { useState } from 'react';
 import './GestStep.css';
-import { databaseMenuList } from '../../databaseMenuList';
+
+
 import { useNavigate, useOutletContext } from 'react-router-dom';
 
 
 
 
 const GestStep3 = () => {
-  const { category, menu, setMenu, day, setDay, menuList, setMenuList } = useOutletContext();
+  const { menuList,setMenuList,setEditingIndex } = useOutletContext();
   const navigate = useNavigate();
 
-  const handleAdd = () => {
-    setMenuList([...menuList, { menu, day }]);
-    navigate("/step3");
-  };
 
-  const [openIndex, setOpenIndex] = useState(null);
-  const toggleGestStepMenu = (index) => {
-    setOpenIndex(openIndex === index ? null : index);
+  if (!menuList) {
+    return <p>メニューが未選択です</p>
   }
 
-  const filteredMenu = databaseMenuList.filter(item => item.category === category);
-
+  const handleDeleteclick=(indexToDelete)=>{
+    const newmenus=menuList.filter((_,i)=>i!==indexToDelete);
+    setMenuList(newmenus)
+  }  
+  const handleVoteAndNext=()=>{
+    if(!menuList||menuList.length===0){
+      alert("投票を行ってください。")
+      return;
+    }
+    navigate("/Gest_thanks");
+  };
   return (
 
-    <div className="GestStep2">
+    <div className="GestStep3">
       <div className="container">
         <div className="GestStep_inner">
-          <img className="GestStep_stepimg" src="/step2.png" alt="ステップ" />
+          <img className="GestStep_stepimg" src="/gstep3.png" alt="ステップ" />
           <h3>来週食べたい料理に投票しよう！</h3>
 
-          <h4>食べたい料理を選択。<br />
-            曜日を指定して、投票に追加ボタンを押そう。</h4>
+          <h4>投票一覧</h4>
 
-          {
-            filteredMenu.map((item, index) => (
-              <div
-                key={`${item.id}-${index}`}
-                className={`Geststep2_button ${openIndex === index ? "open" : ""}`}
-                role="button" // アクセシビリティ的にボタン扱い 
-                tabIndex={0}
-              >
-                <div className="Geststep2_button_box"
-                onClick={() => {toggleGestStepMenu(index);
-                  setMenu(item);
-                }}>
-                  <p>{item.name}</p>
-                  <img src="/arrow3.png" alt="矢印" />
-                </div>
-                {openIndex === index && (
-                  <div className="Geststep2_button_hide"
-                  onChange={e=>setDay(e.target.value)}
+          {menuList.map((selectitem, index) => (
+            <ul key={index}>
+              <li>
+                <h4><span>メニュー名：</span>{selectitem.menu.name || "未選択"}</h4>
+                <p>選択曜日：{selectitem.day || "曜日未選択"}</p>
+                <div className="Geststep3_box1">
+                  <button 
+                  className='GestStep3_button1' 
+                  onClick={()=>{
+                    setEditingIndex(index);
+                    navigate("/",{replace:true});
+                  }}>
+                    メニューを編集</button>
+                  <button
+                  onClick={()=>handleDeleteclick(index)}
                   >
-                    <p>何曜日に投票しますか？？</p>
-                    <select name="GestStep2_day_select" defaultValue="default" >
-                      <option value="default">日付を選択してください</option>
-                      <option value="monday">月曜日</option>
-                      <option value="tuesday">火曜日</option>
-                      <option value="wednesday">水曜日</option>
-                      <option value="thursday">木曜日</option>
-                      <option value="friday">金曜日</option>
-                      <option value="saturday">土曜日</option>
-                      <option value="sunday">日曜日</option>
-                    </select>
-                  </div>
-                )}
-              </div>
-            ))
-          }
+                    <img src="/8.png" alt="ゴミ箱" />
+                    ゴミ箱
+                  </button>
+                </div>
+              </li>
+            </ul>
 
-          <button className='GestStepbutton' onClick={handleAdd}>投票に追加</button>
+          ))}
+
+
+          <div className="Geststep3_box2">
+            <button 
+            onClick={handleVoteAndNext}
+            className='GestStepbutton'>
+              投票する
+              </button>
+            <button 
+            className='GestStepbutton2'
+            onClick={()=>{
+                    navigate("/");
+                  }}>
+            別日の投票をする</button>
+          </div>
         </div>
-
       </div>
     </div>
   );

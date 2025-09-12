@@ -14,13 +14,14 @@ import LayoutGest from './components/LayoutGest';
 import GestStep1 from './pages/Gest/GestStep1';
 import GestStep2 from './pages/Gest/GestStep2';
 import GestStep3 from './pages/Gest/GestStep3';
-
+import Gest_thanks from './pages/Gest/Gest_thanks';
+import Opening from './pages/Creator/Opening';
 
 
 
 function App() {
   const [isFirstTime, setIsFirstTime] = useState(true); // 初回フラグ
-  const [isHost, setIsHost] = useState(false);           // ホストかどうか
+  const [isHost, setIsHost] = useState(true);           // ホストかどうか
 
   return (
 
@@ -43,12 +44,14 @@ function App() {
           <Route path="/" element={<LayoutHost setIsHost={setIsHost}/>}>
             <Route index element={<HostHome />} />
             <Route path="shopping-list" element={<ShoppingList />} />
+            <Route path="Opening" element={<Opening />} />
           </Route>
         ) : (
           <Route path="/" element={<LayoutGest setIsHost={setIsHost}  />}>
             <Route index element={<GestStep1 />} />
             <Route path="GestStep2" element={<GestStep2 />} />
             <Route path="GestStep3" element={<GestStep3 />} />
+            <Route path="Gest_thanks" element={<Gest_thanks />} />
           </Route>
         )}
 

@@ -183,3 +183,14 @@
   margin: 0 auto 3.5rem;
   color: var(--color-brand);
 }
+
+
+/* opening */
+.opening_img{
+  width: 60%;
+  margin: var(--space-md) auto 0;
+}
+.Opening h2{
+  font-size: var(--font-xl);
+  margin-bottom: var(--space-md);
+}

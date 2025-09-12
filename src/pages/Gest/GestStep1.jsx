@@ -14,7 +14,7 @@ const GestStep1 = () => {
     <div className="GestStep1">
       <div className="container">
         <div className="GestStep_inner">
-          <img className="GestStep_stepimg" src="/step1.png" alt="ステップ" />
+          <img className="GestStep_stepimg" src="/gstep1.png" alt="ステップ" />
           <h3>来週食べたい料理に投票しよう！</h3>
 
           <h4>料理カテゴリを選択</h4>
