@@ -1,7 +1,9 @@
 
 
+
+
+
 const Header_Gest = ({setIsHost}) => {
- 
 
 
 
@@ -24,9 +26,13 @@ const Header_Gest = ({setIsHost}) => {
           <div className="container">
            
 
-            <button className="Toggle_mode Toggle_mode_Gest" onClick={()=>{setIsHost(false)}}>
+            <button 
+            className="Toggle_mode Toggle_mode_Gest" 
+            onClick={()=>{
+              setIsHost(true);
+              }}>
               <img className="Toggle_mode_img" src="/m1.png" alt="" />
-              <p>食べる人モード切替</p>
+              <p>作る人モード切替</p>
               <img className="arrow" src="/arrow2.png" alt="" />
             </button>
 

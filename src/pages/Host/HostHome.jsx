@@ -15,8 +15,7 @@ const HostHome = () => {
       <div className="container">
         <This_Week_Menu />
 
-        <Link to="shopping-list" className="shopping_list_button">
-          <img src="/5.png" alt="買い物かご" />
+        <Link to="shopping-list" className="shopping_list_button shopping_list_button1">
           <p>買い出しリスト</p>
         </Link>
       </div>
