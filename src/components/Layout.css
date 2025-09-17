@@ -1,4 +1,7 @@
 /* Header_menu */
+header{
+  position: relative;
+}
 .HeaderTop{
   padding: 3px 0;
   height: 75px;
@@ -119,28 +122,31 @@
 
 /* ハンバーガーメニュー */
 .Header_menu{
+  min-width: 320px;
   width: 100%;
-   box-sizing: border-box;
-  height: calc(100vh - 70px);
-  position: absolute;
-  left: 0;
+  max-width: 500px; /* タブレットやPCで狭めたい */
+  position: fixed;
+    box-sizing: border-box;
+  height: 100vh;
   top: 0;
+  left: 0; 
+  transform: translateX(-100%); /* 初期は画面外に隠す（幅分ずらす） */
   z-index: 100;
   background: var(--color-brand-light);
   padding: 50px 10px;
   transition: all 0.5s;
-    transform: translateX(-100%); /* 初期は画面外に隠す */
+    /* transform: translateX(-100%);  */
     opacity: 0;
     pointer-events: none;    
 }
 .Header_menu.open {
-  transform: translateX(0); /* open クラスで表示 */
+  transform: translateX(0);
    opacity: 1;
     pointer-events: auto;  
 }
 
 .Header_menu.closed {
-  transform: translateX(-100%); /* closed クラスで非表示 */
+  transform: translateX(-100%); 
    opacity: 0;
     pointer-events: none;  
 }
@@ -152,8 +158,10 @@ justify-content: center;
 flex-wrap: wrap;
 width: 60%;
 margin-bottom: var(--space-md);
+padding-bottom: var(--space-xs);
+border-bottom: 1px solid var(--color-border);
 }
-.Header_menu_list>li a,.header_box{
+.Header_menu_list>li>a,.header_box{
   width: 100%;
   display: flex;
 align-items: center;
@@ -171,7 +179,11 @@ flex-direction: row;
 
 .Header_menu_list ul>li{
   text-align: left;
-  margin-bottom: var(--space-xs);
+  margin-top: var(--space-xs);
+  margin-left: var(--space-md);
+}
+.Header_menu_list ul>li span{
+  font-size: var(--font-sm);
 }
 .Header_menu_apptitle{
   display: flex;
@@ -181,6 +193,10 @@ flex-direction: row;
   bottom:5%;
   left: 50%;
   transform: translateX(-50%);
+}
+.Header_menu_list a:hover{
+  transition: all 0.5s;
+  opacity: 0.5;
 }
 .Header_menu_apptitle img{
   width: 50px;
@@ -221,4 +237,16 @@ footer p{
 }
 .Toggle_mode_Gest:hover{
   background:rgba(255,181,52,0.6);
+}
+
+
+@media (min-width: 768px) {
+  .Header_menu {
+    left: 50%; /* 中央寄せ */
+    transform: translateX(-150%); /* 初期は画面左に隠す */
+  }
+
+  .Header_menu.open {
+    transform: translateX(-50%); /* 中央に表示 */
+  }
 }

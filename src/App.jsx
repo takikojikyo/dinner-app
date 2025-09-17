@@ -16,6 +16,9 @@ import GestStep2 from './pages/Gest/GestStep2';
 import GestStep3 from './pages/Gest/GestStep3';
 import Gest_thanks from './pages/Gest/Gest_thanks';
 import Opening from './pages/Creator/Opening';
+import MenuEdit1 from './pages/MenuEdit/MenuEdit1';
+import MenuEdit2 from './pages/MenuEdit/MenuEdit2';
+import MenuEdit3 from './pages/MenuEdit/MenuEdit3';
 
 
 
@@ -45,6 +48,10 @@ function App() {
             <Route index element={<HostHome />} />
             <Route path="shopping-list" element={<ShoppingList />} />
             <Route path="Opening" element={<Opening />} />
+             {/* MenuEditページ群 */}
+             <Route path="MenuEdit1" element={<MenuEdit1 />} />
+             <Route path="MenuEdit2" element={<MenuEdit2 />} />
+             <Route path="MenuEdit3" element={<MenuEdit3 />} />
           </Route>
         ) : (
           <Route path="/" element={<LayoutGest setIsHost={setIsHost}  />}>

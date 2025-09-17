@@ -1,18 +1,18 @@
-.GestStep_inner{
+.Step_inner{
   margin: var(--space-md) 0;
   background-color: var(--color-bg);
   border-radius: var(--radius-md);
   padding: var(--space-md);
 }
-.GestStep_inner h3{
+.Step_inner h3{
   font-size: var(--font-lg);
   margin-bottom: var(--space-sm);
 }
-.GestStep_inner h4{
+.Step_inner h4{
   font-size: var(--font-md);
   margin-bottom: var(--space-sm);
 }
-.GestStep_inner button{
+.Step_inner button{
   font-size: var(--font-md);
   font-weight: bold;
   padding: var(--space-xs) var(--space-sm);
@@ -28,13 +28,13 @@
 .GestStepbutton:hover{
   background:rgba(255,181,52,0.6);
 }
-.GestStep_inner input{
+.Step_inner input{
   padding: var(--space-xs);
   border-radius:var(--radius-sm);;
   border: 1px solid var(--color-text);
 }
 
-.GestStep_inner select{
+.Step_inner select{
   width: 100%;
   padding: var(--space-xs);
   border-radius: var(--radius-sm);

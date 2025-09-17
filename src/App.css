@@ -81,6 +81,24 @@ ul{
 }
 
 
+.appbutton{
+  font-size: var(--font-md);
+  font-weight: bold;
+  padding: var(--space-xs);
+  border-radius: var(--radius-md);
+  transition: all 0.5s;
+}
+
+.appbutton1{
+ border: 3px solid var(--color-accent);
+  background: var(--color-accent);
+  width: 100%;
+}
+.appbutton1:hover{
+  background:rgba(255,181,52,0.6);
+}
+
+
 
 /* PC以上のときだけ制御 */
 @media (min-width: 768px) {
