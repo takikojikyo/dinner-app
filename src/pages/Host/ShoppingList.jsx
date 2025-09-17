@@ -68,8 +68,7 @@ const ShoppingList = () => {
 
       </div>
 
-      <Link to="/" className="shopping_list_button">
-        <img src="/m3.png" alt="買い物かご" />
+      <Link to="/" className="shopping_list_button shopping_list_button2">
         <p>トップへ戻る</p>
       </Link>
     </div>

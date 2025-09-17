@@ -10,7 +10,7 @@ import Header_Gest from "./Header_Gest";
 
 
 
-const LayoutGest = () => {
+const LayoutGest = ({setIsHost}) => {
   const[category,setCategory]=useState("");
   const[menu,setMenu]=useState(null);
   const[day,setDay]=useState("");
@@ -19,7 +19,7 @@ const LayoutGest = () => {
 
   return (
     <div className="gesthome">
-      <Header_Gest />
+      <Header_Gest setIsHost={setIsHost}/>
       <main>
         <Outlet 
         context={

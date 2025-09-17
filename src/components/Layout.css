@@ -99,6 +99,7 @@
   padding: 0.5em; 
   border-radius: var(--radius-md);
   transition: all 0.5s;
+  width: 180px;
 }
 .Toggle_mode_host{
   background: var(--color-brand-light);
@@ -135,13 +136,13 @@
 .Header_menu.open {
   transform: translateX(0); /* open クラスで表示 */
    opacity: 1;
-    pointer-events: auto;    
+    pointer-events: auto;  
 }
 
 .Header_menu.closed {
   transform: translateX(-100%); /* closed クラスで非表示 */
    opacity: 0;
-    pointer-events: none;    
+    pointer-events: none;  
 }
 
 .Header_menu_list>li{
@@ -151,6 +152,13 @@ justify-content: center;
 flex-wrap: wrap;
 width: 60%;
 margin-bottom: var(--space-md);
+}
+.Header_menu_list>li a,.header_box{
+  width: 100%;
+  display: flex;
+align-items: center;
+justify-content: center;
+flex-direction: row;
 }
 .Header_menu_list li img{
   width: 45px;
