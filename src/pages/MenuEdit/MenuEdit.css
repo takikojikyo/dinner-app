@@ -1,0 +1,40 @@
+.MenuEdit2 h4 span{
+  font-size: var(--font-lg);
+  color: var(--color-brand);
+}
+.MenuEdit2 ul{
+  margin-bottom: var( --space-md);
+}
+.MenuEdit2 ul li{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+.MenuEdit2 ul li p{
+  font-size: var( --font-md);
+  font-weight: bold;
+}
+.MenuEdit2 ul li button,.MenuEdit3_addbox button{
+  padding: 3px 10px;
+  border: 1px solid var(--color-border);
+}
+.MenuEdit2 ul li button img{
+  width: 20px;
+}
+.MenuEdit3_addbox{
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: var(--space-md);
+padding-bottom: var(--space-xs);
+  border-bottom: 1px solid var(--color-border);
+}
+.MenuEdit3_addbox input{
+  width: 75%;
+}
+.menuEdit3_nav{
+  margin-top: var(--space-md);
+}

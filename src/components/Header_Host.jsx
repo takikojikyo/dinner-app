@@ -63,20 +63,16 @@ const Header_Host = ({ setIsHost }) => {
                 </div>
                 <ul>
                   <li>
-                    <p className='Header_menu_list_settingtitle'>料理の材料を編集</p>
+                    <Link to="/MenuEdit1" onClick={handleLinkClick}>
+                      <p className='Header_menu_list_settingtitle'>料理の材料を編集</p>
+                    </Link>
                   </li>
                   <li>
-                    <p className='Header_menu_list_settingtitle'>料理バランスの変更</p>
+                    <Link to="/creator/step2" onClick={handleLinkClick}>
+                      <p className='Header_menu_list_settingtitle'>設定やり直し<br/><span>（料理バランス、作れるメニュー、投票締め切り曜日の変更、家族を招待）</span></p>
+                    </Link>
                   </li>
-                  <li>
-                    <p className='Header_menu_list_settingtitle'>作れるメニューの変更</p>
-                  </li>
-                  <li>
-                    <p className='Header_menu_list_settingtitle'>投票締め切り曜日の変更</p>
-                  </li>
-                  <li>
-                    <p className='Header_menu_list_settingtitle'>家族を招待する</p>
-                  </li>
+
                 </ul>
               </li>
             </ul>

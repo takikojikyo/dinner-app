@@ -30,7 +30,7 @@ const GestStep3 = () => {
 
     <div className="GestStep3">
       <div className="container">
-        <div className="GestStep_inner">
+        <div className="Step_inner">
           <img className="GestStep_stepimg" src="/gstep3.png" alt="ステップ" />
           <h3>来週食べたい料理に投票しよう！</h3>
 
