@@ -2,7 +2,7 @@ import { useState } from "react";
 
 
 
-const CreatorStep2 = () => {
+const CreatorStep2 = ({ onNext }) => {
   const [mealDays, setMealDays] = useState(0);
   const [fishDays, setFishDays] = useState(0);
   const totalDays = 7;
@@ -10,6 +10,19 @@ const CreatorStep2 = () => {
   const remainingDays = totalDays - mealDays;
   const fishOptions = Array.from({ length: remainingDays }, (_, i) => i + 1)
 
+  const handleNext = () => {
+    if(mealDays===0||fishDays===0){
+      alert("肉料理、魚料理の日数をチェックしてください。")
+      return;
+    }
+
+    onNext({
+      mealDays,
+      fishDays,
+      otherDays,
+    });
+    
+  }
 
   return (
     <div className="CreateStep2">
@@ -32,7 +45,13 @@ const CreatorStep2 = () => {
               <p>肉料理：{mealDays}日</p>
               {[1, 2, 3, 4, 5, 6].map(n => (
                 <label key={n}>
-                  <input type="radio" name="meat" value={n} checked={mealDays === n} onChange={() => setMealDays(n)} />
+                  <input
+                    type="radio"
+                    name="meat"
+                    value={n}
+                    checked={mealDays === n}
+                    onChange={() => setMealDays(n)}
+                  />
                   {n}日
                 </label>
               )
@@ -43,7 +62,13 @@ const CreatorStep2 = () => {
               <p>魚料理：{fishDays}日</p>
               {fishOptions.map(n => (
                 <label key={n}>
-                  <input type="radio" name="fish" value={n} checked={fishDays === n} onChange={() => setFishDays(n)} />
+                  <input
+                    type="radio"
+                    name="fish"
+                    value={n}
+                    checked={fishDays === n}
+                    onChange={() => setFishDays(n)}
+                  />
                   {n}日
                 </label>
               ))}
@@ -55,7 +80,7 @@ const CreatorStep2 = () => {
             </li>
 
           </ul>
-          <button className="CreateStepbutton">次へ</button>
+          <button className="CreateStepbutton" onClick={handleNext}>次へ</button>
 
         </div>
       </div>

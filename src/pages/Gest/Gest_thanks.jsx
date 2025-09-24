@@ -28,7 +28,7 @@ const Gest_thanks = () => {
             <h3>来週は木曜日までに投票してね!</h3>
             <button
               className='GestStepbutton'
-              onClick={() => handleContineVote()}>
+              onClick={handleContineVote}>
               続けて投票する
             </button>
           </div>

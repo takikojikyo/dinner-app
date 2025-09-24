@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 
 
-const Header_Host = ({ setIsHost }) => {
+const Header_Host = ({ setIsHost, formData }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
@@ -68,8 +68,12 @@ const Header_Host = ({ setIsHost }) => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/creator/step2" onClick={handleLinkClick}>
-                      <p className='Header_menu_list_settingtitle'>設定やり直し<br/><span>（料理バランス、作れるメニュー、投票締め切り曜日の変更、家族を招待）</span></p>
+                    <Link
+                      to="/creator-signup"
+                      state={{ step: 2, formData: formData }}
+                      onClick={handleLinkClick}
+                    >
+                      <p className='Header_menu_list_settingtitle'>設定やり直し<br /><span>（料理バランス、作れるメニュー、投票締め切り曜日の変更、家族を招待）</span></p>
                     </Link>
                   </li>
 
