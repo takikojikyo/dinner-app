@@ -4,11 +4,7 @@ import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import HostHome from './pages/Host/HostHome';
 import ShoppingList from './pages/Host/ShoppingList';
 import LayoutHost from './components/LayoutHost';
-import CreatorStep1 from './pages/Creator/CreatorStep1';
-import CreatorStep2 from './pages/Creator/CreatorStep2';
-import CreatorStep3 from './pages/Creator/CreatorStep3';
-import CreatorStep4 from './pages/Creator/CreatorStep4';
-import CreatorStep5 from './pages/Creator/CreatorStep5';
+
 import { useState } from 'react';
 import LayoutGest from './components/LayoutGest';
 import GestStep1 from './pages/Gest/GestStep1';
@@ -19,6 +15,8 @@ import Opening from './pages/Creator/Opening';
 import MenuEdit1 from './pages/MenuEdit/MenuEdit1';
 import MenuEdit2 from './pages/MenuEdit/MenuEdit2';
 import MenuEdit3 from './pages/MenuEdit/MenuEdit3';
+import CreatorSignUp from './pages/Creator/CreatorSignUp';
+
 
 
 
@@ -34,12 +32,13 @@ function App() {
         {isFirstTime && (
           <>
             {/* 作る人の4ステップ設定 */}
-            <Route path="/creator/step1" element={<CreatorStep1 />} />
+            <Route path="/creator-signup" element={<CreatorSignUp />} />
+            {/* <Route path="/creator/step1" element={<CreatorStep1 />} />
             <Route path="/creator/step2" element={<CreatorStep2 />} />
             <Route path="/creator/step3" element={<CreatorStep3 />} />
             <Route path="/creator/step4" element={<CreatorStep4 />} />
-            <Route path="/creator/step5" element={<CreatorStep5 />} />
-
+            <Route path="/creator/step5" element={<CreatorStep5 />} /> */}
+            
           </>
         )}
 

@@ -1,6 +1,19 @@
+import { useState } from 'react';
 import './CreatorStep.css';
 
-const CreatorStep4 = () => {
+
+const CreatorStep4 = ({onNext}) => {
+  const[selectDay,setSelectDay]=useState('');
+  const handleChange=(e)=>{
+    setSelectDay(e.target.value);
+  }
+  const handleSubmit=()=>{
+    if(!selectDay){
+      alert("曜日を選択してください。")
+      return;
+    }
+    onNext({voteDeadlime:selectDay})
+  }
 
   return (
     <div className="CreateStep4">
@@ -11,8 +24,12 @@ const CreatorStep4 = () => {
           <img className="CreateStep_stepimg" src="/step3.png" alt="ステップ" />
           <h3>家族投票の締め切りは何曜日にする？？</h3>
 
-          <select name="CreateStep4_day_select" >
-            <option value="" disabled selected>日付を選択してください</option>
+          <select 
+          name="CreateStep4_day_select" 
+          value={selectDay}
+          onChange={handleChange}
+          >
+            <option value="" disabled>日付を選択してください</option>
             <option value="monday">月曜日</option>
             <option value="tuesday">火曜日</option>
             <option value="wednesday">水曜日</option>
@@ -23,7 +40,7 @@ const CreatorStep4 = () => {
           </select>
 
 
-          <button className='CreateStepbutton'>次へ</button>
+          <button className='CreateStepbutton' onClick={handleSubmit}>次へ</button>
 
         </div>
       </div>

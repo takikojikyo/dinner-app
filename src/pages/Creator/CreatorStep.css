@@ -26,14 +26,14 @@
 .CreateStep_inner input{
   padding: var(--space-xs);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--font-base);
+  border: 1px solid var(--color-text);
 }
 
 .CreateStep_inner select{
   width: 100%;
   padding: var(--space-xs);
   border-radius: var(--radius-sm);
-  border: 1px solid var(--font-base);
+  border: 1px solid var(--color-text);
 }
 
 .CreateStep_tex1{
@@ -45,10 +45,6 @@
 .CreateStep_stepimg{
   margin-bottom:var(--space-sm);
 }
-
-
-
-/* CreatorStep1 */
 .CreateStep-img{
   width: 130px;
   margin-top: 3.5rem;
@@ -58,25 +54,37 @@
   font-size: var(--font-xl);
   margin-bottom: var(--space-sm);
 }
-.CreateStep1_box1{
+
+
+/* CreatorStep1 */
+
+.CreateStep1_box1_inner1,.CreateStep1_box2_inner1{
   display: flex;
   flex-direction: column;
-  gap: var(--space-sm);
-  padding-bottom: var(--space-md);
-  border-bottom: 1px solid var(--color-border);
+  gap: var(--space-xs);
+  padding-bottom: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  border-bottom: 1px dotted var(--color-border);
+}
+.CreateStep1_box1{
   margin-bottom: var(--space-md);
+  padding-bottom: var(--space-md);
+  border-bottom: 1px solid var(--color-text);
 }
 
-.CreateStep1_box2 button{
-  width: 100%;
-  border: 3px solid var(--color-accent);
-  background: var(--color-bg);
+.CreateStep1_box1_inner1 button,
+.CreateStep1_box2_inner1 button{
+  width: 80%;
+  align-self: center;
 }
-.CreateStep1_box2 button:hover{
-  background: var(--color-brand);
-  border-color: var(--color-brand);
-  color: var(--color-surface);
+.CreateStep1_box1_inner2 button,
+.CreateStep1_box2_inner2 button{
+  width: 80%;
 }
+
+
+
+
 
 
 /* CreatorStep2 */
@@ -129,59 +137,98 @@
   font-size: var(--font-md);
   font-weight: bold;
 }
-.CreateStep3_box1,.CreateStep3_box2,.CreateStep3_box3{
+.CreateStep3_box1{
   padding-bottom: var(--space-lg);
   border-bottom: 1px solid var(--color-border);
   margin-bottom: var(--space-lg);
 }
 
-.CreateStep3_box4{
- background: var(--color-brand-light);
+.CreateStep3_box2{
+ background: #EAEAEA;
   border-radius: var(--radius-md);
   padding: var(--space-md) var(--space-xs);
   margin-bottom: var(--space-lg);
 }
-.CreateStep3_box4 h4{
+.CreateStep3_box2 select{
+  border: 1px solid var(--color-text);
+}
+.CreateStep3_box2 h4{
   font-size: var(--font-md);
   text-align: left;
 }
-.CreateStep3_box4_item1,.CreateStep3_box4_item2{
- margin-bottom: var(--space-md);
+.CreateStep3_box2_item1,.CreateStep3_box2_item2{
+ margin-bottom: var(--space-xs);
 }
-.CreateStep3_box4 input{
+.CreateStep3_box2 input{
   width: 100%;
 }
 
-.CreateStep3_box4_button_area{
+.CreateStep3_box2_button_area{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
   margin-top: var(--space-md);
 }
-.CreateStep3_box4_button1{
-  background: var(--color-brand-light);
-  border: 3px solid var(--color-brand);
+
+.CreateStep3_selected_menus{
+  background: rgba(122, 221, 78, 0.3);
+  border-radius: var(--radius-md);
+  padding: var(--space-md) var(--space-xs);
+  margin-bottom: var(--space-lg);
+  text-align: left;
 }
-.CreateStep3_box4_button1:hover{
-  background: #E1FFD7;
+.CreateStep3_selected_menus h4{
+  font-size: var(--font-lg);
+  margin-bottom: var(--space-sm);
 }
-.CreateStep3_box4_button2{
-  background: var(--color-surface);
-  color: var(--color-brand);
-  border: 3px solid var(--color-brand);
+.CreateStep3_selected_menus>div{
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-xs);
 }
-.CreateStep3_box4_button2:hover{
-  background: var(--color-brand);
-  color: var(--color-surface);
+.CreateStep3_selected_menus>div:not(:last-of-type){
+  margin-bottom: var(--space-sm);
 }
+.CreateStep3_selected_menus h5{
+  font-size: var(  --font-md);
+  margin-bottom: 3px;
+}
+
+.CreateStep3_selected_menus span{
+  font-size: var( --font-sm);
+  font-weight: normal;
+}
+
+
+/* CreateStep5 */
 .CreateStep4 select{
   margin-bottom: var(--space-md);
 }
-.introduction_url{
-    width: 80%;
-  text-align: left;
+.introduction_box{
+  padding: var(--space-md);
+    background:rgba(122, 221, 78, 0.3);
+    border-radius: var(--radius-sm);
+  text-align: center;
   margin: 0 auto 3.5rem;
-  color: var(--color-brand);
+}
+.introduction_box p{
+  color: #FA5935;
+  font-weight: bold;
+  display: inline-block;
+  border-bottom: 2px dotted #FA5935;
+  margin-bottom: var(--space-sm);
+}
+.introduction_box_inner{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.introduction_box_inner button{
+  font-size: var(--font-sm);
+  width: 100px;
+}
+.CreateStep5 .CreateStepbutton{
+  width: 80%;
 }
 
 

@@ -60,6 +60,7 @@ ul{
 .container{
   width: 100%;
   padding: 0 3%;
+  margin-bottom: var(--space-xl);
 }
 
 .arrow{
@@ -97,7 +98,30 @@ ul{
 .appbutton1:hover{
   background:rgba(255,181,52,0.6);
 }
-
+.appbutton2{
+  border: 3px solid var(--color-accent);
+  background: var(--color-bg);
+}
+.appbutton2:hover{
+  background: rgba(255,181,52,0.6);
+}
+.appbutton3{
+  border: 3px solid var(--color-brand);
+  background: var(--color-brand);
+  color: var(--color-bg);
+}
+.appbutton3:hover{
+   background: #E1FFD7;
+  color: var(--color-text);
+}
+.appbutton4{
+  border: 3px solid var(--color-brand);
+  background: var(--color-bg);
+}
+.appbutton4:hover{
+ background: rgba(122,221,78,0.3);
+  color: var(--color-text);
+}
 
 
 /* PC以上のときだけ制御 */
