@@ -47,15 +47,27 @@ function App() {
 
     <BrowserRouter>
       <Routes>
-        {/* 作る人の初回設定 */}
-        {/* {isFirstTime && ( */}
+        {/* 初回アクセス分岐 */}
+        <Route
+          path="/"
+          element={
+            isFirstTime ? (
+              <Navigate to="/Creator-signup" replace />
+            ) : (
+              <Navigate to="/host" replace />
+            )
+          }
+        />
+
+        {/* Creator-signup */}
         <Route
           path="/Creator-signup"
-          element=
-          {isFirstTime ? (<CreatorSignUp onNext={() => setIsFirstTime(false)} />
-          ) : (
-            <Navigate to="/host" replace />
-          )
+          element={
+            isFirstTime ? (
+              <CreatorSignUp onNext={() => setIsFirstTime(false)} />
+            ) : (
+              <Navigate to="/host" replace />
+            )
 
           }
         />

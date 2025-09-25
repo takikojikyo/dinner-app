@@ -3,7 +3,7 @@ import './CreatorStep.css';
 import { useState } from 'react';
 
 
-const CreatorStep5 = ({ formData }) => {
+const CreatorStep5 = ({ formData, onFinish }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
 
@@ -12,7 +12,8 @@ const CreatorStep5 = ({ formData }) => {
 
   const handleFinish = () => {
     console.log(formData);
-    navigate('/');
+    onFinish();
+    navigate('/host');
   }
   const handleCopy = () => {
     navigator.clipboard.writeText(inviteUrl)

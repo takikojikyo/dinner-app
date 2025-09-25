@@ -7,7 +7,7 @@ import CreatorStep4 from "./CreatorStep4";
 import { useLocation } from "react-router-dom";
 
 
-const CreatorSignUp = () => {
+const CreatorSignUp = ({ onNext }) => {
   const location = useLocation();
   const initialStep = location.state?.step || 1;  // ← step に合わせる
   const initialData = location.state?.formData || {
@@ -25,6 +25,9 @@ const CreatorSignUp = () => {
   const handleNextStep = (data) => {
     setFormData(prev => ({ ...prev, ...data }));
     setStep(prev => prev + 1)
+    if (step === 5 && onNext) {
+      onNext();   // ← isFirstTime を false にする
+    }
   }
 
   return (
@@ -38,7 +41,7 @@ const CreatorSignUp = () => {
         />
       )}
       {step === 4 && <CreatorStep4 onNext={handleNextStep} />}
-      {step === 5 && <CreatorStep5 formData={formData} />}
+      {step === 5 && <CreatorStep5 formData={formData} onFinish={onNext}/>}
     </div>
 
   )
