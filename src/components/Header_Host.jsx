@@ -1,10 +1,12 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
 
-const Header_Host = ({ setIsHost, formData }) => {
+const Header_Host = ({ formData }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const Navigate = useNavigate();
+
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
   const handleLinkClick = () => setIsMenuOpen(false);
@@ -33,7 +35,7 @@ const Header_Host = ({ setIsHost, formData }) => {
               <span></span>
             </div>
 
-            <button className="Toggle_mode Toggle_mode_host" onClick={() => { setIsHost(false) }}>
+            <button className="Toggle_mode Toggle_mode_host" onClick={() => { navigator("/gest") }}>
               <img className="Toggle_mode_img" src="/m3.png" alt="" />
               <p>食べる人モード切替</p>
               <img className="arrow" src="/arrow2.png" alt="" />
@@ -45,13 +47,13 @@ const Header_Host = ({ setIsHost, formData }) => {
           <div className={`Header_menu ${isMenuOpen ? "open" : "close"}`}>
             <ul className='Header_menu_list'>
               <li>
-                <Link to="/" onClick={handleLinkClick}>
+                <Link to="/host" onClick={handleLinkClick}>
                   <img src="/4.png" alt="カレンダーアイコン" />
                   <p className='Header_menu_list_title'>１週間の献立一覧</p>
                 </Link>
               </li>
               <li>
-                <Link to="/shopping-list" onClick={handleLinkClick}>
+                <Link to="/host/shopping-list" onClick={handleLinkClick}>
                   <img src="/5.png" alt="買い物かごアイコン" />
                   <p className='Header_menu_list_title'>買い出しリスト</p>
                 </Link>
@@ -63,7 +65,7 @@ const Header_Host = ({ setIsHost, formData }) => {
                 </div>
                 <ul>
                   <li>
-                    <Link to="/MenuEdit1" onClick={handleLinkClick}>
+                    <Link to="/host/MenuEdit1" onClick={handleLinkClick}>
                       <p className='Header_menu_list_settingtitle'>料理の材料を編集</p>
                     </Link>
                   </li>

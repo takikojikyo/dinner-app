@@ -20,7 +20,7 @@ const GestStep1 = () => {
           <h4>料理カテゴリを選択</h4>
           <button className='GestStep1_button GestStep1_button1'
           onClick={()=>{setCategory("肉");
-            navigate("/GestStep2");
+            navigate("/gest/GestStep2");
           }}
           >
             <div className='GestStep1_button_box'>
@@ -32,7 +32,7 @@ const GestStep1 = () => {
 
           <button className='GestStep1_button GestStep1_button2'
           onClick={()=>{setCategory("魚");
-            navigate("/GestStep2");
+            navigate("/gest/GestStep2");
           }}
           >
             <div className='GestStep1_button_box'>
@@ -44,7 +44,7 @@ const GestStep1 = () => {
 
           <button className='GestStep1_button GestStep1_button3'
           onClick={()=>{setCategory("その他");
-            navigate("/GestStep2");
+            navigate("/gest/GestStep2");
           }}
           >
             <div className='GestStep1_button_box'>

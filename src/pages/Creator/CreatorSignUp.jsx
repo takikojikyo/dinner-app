@@ -20,14 +20,7 @@ const CreatorSignUp = () => {
   };
   const [step, setStep] = useState(initialStep);
   const [formData, setFormData] = useState(initialData);
-  // const [formData, setFormData] = useState({
-  //   email: '',
-  //   password: '',
-  //   mealDays: 0,
-  //   fishDays: 0,
-  //   otherDays: 0,
-  //   voteDeadline: '',
-  // });
+
 
   const handleNextStep = (data) => {
     setFormData(prev => ({ ...prev, ...data }));
@@ -41,9 +34,6 @@ const CreatorSignUp = () => {
       {step === 3 && (
         <CreatorStep3
           {...formData}
-          // mealDays={formData.mealDays}
-          // fishDays={formData.fishDays}
-          // otherDays={formData.otherDays}
           onNext={handleNextStep}
         />
       )}

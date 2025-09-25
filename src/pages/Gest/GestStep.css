@@ -183,8 +183,9 @@ margin-top: var(--space-lg);
 
 
 /* Gest_thanks */
-.gestthanks_img{
-  margin: var(--space-md) 0;
+
+.gestthanks_img2{
+  margin: var(--space-md) ;
 }
 .Gest_thanks_box{
   padding: var(--space-sm) 0;

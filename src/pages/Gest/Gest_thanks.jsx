@@ -12,17 +12,17 @@ const Gest_thanks = () => {
   const { setMenuList } = useOutletContext();
   const handleContineVote = () => {
     setMenuList([]);
-    navigate("/");
+    navigate("/gest");
   }
 
   return (
 
     <div className="Gest_thanks">
       <div className="container">
-        <div className="GestStep_inner">
+        <div className="Step_inner">
 
-          <img src="/g1.png" alt="thankyou" />
-          <img className="gestthanks_img" src="/g2.png" alt="女性" />
+          <img className="gestthanks_img1" src="/g1.png" alt="thankyou" />
+          <img className="gestthanks_img2" src="/g2.png" alt="女性" />
 
           <div className="Gest_thanks_box">
             <h3>来週は木曜日までに投票してね!</h3>
