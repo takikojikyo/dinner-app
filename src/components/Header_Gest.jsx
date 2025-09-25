@@ -1,10 +1,11 @@
+import { useNavigate } from "react-router-dom";
 
 
 
 
 
-const Header_Gest = ({setIsHost}) => {
-
+const Header_Gest = () => {
+const navigate=useNavigate();
 
 
   return (
@@ -29,7 +30,7 @@ const Header_Gest = ({setIsHost}) => {
             <button 
             className="Toggle_mode Toggle_mode_Gest" 
             onClick={()=>{
-              setIsHost(true);
+              navigate("/host");
               }}>
               <img className="Toggle_mode_img" src="/m1.png" alt="" />
               <p>作る人モード切替</p>

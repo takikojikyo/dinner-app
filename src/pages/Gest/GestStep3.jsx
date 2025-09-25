@@ -24,7 +24,7 @@ const GestStep3 = () => {
       alert("投票を行ってください。")
       return;
     }
-    navigate("/Gest_thanks");
+    navigate("/gest/Gest_thanks");
   };
   return (
 
@@ -46,7 +46,7 @@ const GestStep3 = () => {
                   className='GestStep3_button1' 
                   onClick={()=>{
                     setEditingIndex(index);
-                    navigate("/",{replace:true});
+                    navigate("/gest",{replace:true});
                   }}>
                     メニューを編集</button>
                   <button
@@ -71,7 +71,7 @@ const GestStep3 = () => {
             <button 
             className='GestStepbutton2'
             onClick={()=>{
-                    navigate("/");
+                    navigate("/gest");
                   }}>
             別日の投票をする</button>
           </div>

@@ -26,7 +26,7 @@ const GestStep2 = () => {
       setMenuList([...menuList, { menu: item, day }]);
     }
 
-    navigate("/GestStep3");
+    navigate("/gest/GestStep3");
   };
 
   const [openIndex, setOpenIndex] = useState(null);

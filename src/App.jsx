@@ -1,11 +1,14 @@
 import './App.css';
-import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link, Navigate } from "react-router-dom";
 
 import HostHome from './pages/Host/HostHome';
 import ShoppingList from './pages/Host/ShoppingList';
 import LayoutHost from './components/LayoutHost';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./firebase";
+
 import LayoutGest from './components/LayoutGest';
 import GestStep1 from './pages/Gest/GestStep1';
 import GestStep2 from './pages/Gest/GestStep2';
@@ -21,56 +24,64 @@ import CreatorSignUp from './pages/Creator/CreatorSignUp';
 
 
 function App() {
+  const [user, setUser] = useState(null);
+  const [loading, setloading] = useState(true);
   const [isFirstTime, setIsFirstTime] = useState(true); // 初回フラグ
-  const [isHost, setIsHost] = useState(true);           // ホストかどうか
+
+
+
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setloading(false);
+    });
+    return unsubscribe;
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>; // ローディング表示
+  }
 
   return (
 
     <BrowserRouter>
       <Routes>
+        {/* 作る人の初回設定 */}
+        {/* {isFirstTime && ( */}
+        <Route
+          path="/Creator-signup"
+          element=
+          {isFirstTime ? (<CreatorSignUp onNext={() => setIsFirstTime(false)} />
+          ) : (
+            <Navigate to="/host" replace />
+          )
 
-        {isFirstTime && (
-          <>
-            {/* 作る人の4ステップ設定 */}
-            <Route path="/creator-signup" element={<CreatorSignUp />} />
-            {/* <Route path="/creator/step1" element={<CreatorStep1 />} />
-            <Route path="/creator/step2" element={<CreatorStep2 />} />
-            <Route path="/creator/step3" element={<CreatorStep3 />} />
-            <Route path="/creator/step4" element={<CreatorStep4 />} />
-            <Route path="/creator/step5" element={<CreatorStep5 />} /> */}
-            
-          </>
-        )}
-
-        {isHost ? (
-          <Route path="/" element={<LayoutHost setIsHost={setIsHost}/>}>
-            <Route index element={<HostHome />} />
-            <Route path="shopping-list" element={<ShoppingList />} />
-            <Route path="Opening" element={<Opening />} />
-             {/* MenuEditページ群 */}
-             <Route path="MenuEdit1" element={<MenuEdit1 />} />
-             <Route path="MenuEdit2" element={<MenuEdit2 />} />
-             <Route path="MenuEdit3" element={<MenuEdit3 />} />
-          </Route>
-        ) : (
-          <Route path="/" element={<LayoutGest setIsHost={setIsHost}  />}>
-            <Route index element={<GestStep1 />} />
-            <Route path="GestStep2" element={<GestStep2 />} />
-            <Route path="GestStep3" element={<GestStep3 />} />
-            <Route path="Gest_thanks" element={<Gest_thanks />} />
-          </Route>
-        )}
+          }
+        />
 
 
 
-        {/* 招待を受けた人用Home */}
-        {/* <Route path="/home/guest" element={<GuestHome />} /> */}
 
-        {/* 食べる人の投票ステップ */}
-        {/* <Route path="/vote/step1" element={<VoteStep1 />} />
-          <Route path="/vote/step2" element={<VoteStep2 />} />
-          <Route path="/vote/step3" element={<VoteStep3 />} />
-          <Route path="/vote/thanks" element={<VoteThanks />} /> */}
+        <Route path="/host/*" element={<LayoutHost user={user} />}>
+          <Route index element={<HostHome />} />
+          <Route path="shopping-list" element={<ShoppingList />} />
+          <Route path="Opening" element={<Opening />} />
+          {/* MenuEditページ群 */}
+          <Route path="MenuEdit1" element={<MenuEdit1 />} />
+          <Route path="MenuEdit2" element={<MenuEdit2 />} />
+          <Route path="MenuEdit3" element={<MenuEdit3 />} />
+        </Route>
+
+
+        <Route path="/gest/*" element={<LayoutGest user={user} />}>
+          <Route index element={<GestStep1 />} />
+          <Route path="GestStep2" element={<GestStep2 />} />
+          <Route path="GestStep3" element={<GestStep3 />} />
+          <Route path="Gest_thanks" element={<Gest_thanks />} />
+        </Route>
+
+
 
         {/* Not Found */}
         <Route path="*" element={<h1>Not Found Page</h1>} />

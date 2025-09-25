@@ -15,7 +15,7 @@ import MenuEdit3 from "../pages/MenuEdit/MenuEdit3";
 
 
 
-const LayoutHost = ({ setIsHost }) => {
+const LayoutHost = () => {
   const [category, setCategory] = useState("");
   const [selectedMenu, setSelectedMenu] = useState(null);
   const [formData, setFormData] = useState({
@@ -30,7 +30,6 @@ const LayoutHost = ({ setIsHost }) => {
   return (
     <div className="hosthome">
       <Header_Host 
-      setIsHost={setIsHost} 
       formData={formData}
       setFormData={setFormData} 
       />
