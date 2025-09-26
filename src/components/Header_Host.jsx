@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 const Header_Host = ({ formData }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const Navigate = useNavigate();
+  const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
@@ -35,7 +35,7 @@ const Header_Host = ({ formData }) => {
               <span></span>
             </div>
 
-            <button className="Toggle_mode Toggle_mode_host" onClick={() => { navigator("/gest") }}>
+            <button className="Toggle_mode Toggle_mode_host" onClick={() => { navigate("/gest") }}>
               <img className="Toggle_mode_img" src="/m3.png" alt="" />
               <p>食べる人モード切替</p>
               <img className="arrow" src="/arrow2.png" alt="" />
