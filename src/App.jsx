@@ -19,6 +19,9 @@ import MenuEdit1 from './pages/MenuEdit/MenuEdit1';
 import MenuEdit2 from './pages/MenuEdit/MenuEdit2';
 import MenuEdit3 from './pages/MenuEdit/MenuEdit3';
 import CreatorSignUp from './pages/Creator/CreatorSignUp';
+import IngredientAdd from './pages/IngredientAdd';
+// import BaseMenuListTest from './pages/BaseMenuListTest';
+// import BaseMenuList from './components/BaseMenuList';
 
 
 
@@ -93,9 +96,14 @@ function App() {
           <Route path="Gest_thanks" element={<Gest_thanks />} />
         </Route>
 
+        {/* メニュー追加用 */}
+        {/* <Route path="/base-menu" element={<BaseMenuList/>} /> */}
 
+        {/* 材料追加用 */}
+        <Route path="/ingredient-add" element={<IngredientAdd/>} />
 
         {/* Not Found */}
+
         <Route path="*" element={<h1>Not Found Page</h1>} />
       </Routes>
     </BrowserRouter>
