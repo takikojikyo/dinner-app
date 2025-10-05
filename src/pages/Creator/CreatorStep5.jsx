@@ -1,11 +1,14 @@
 import { useNavigate } from 'react-router-dom';
 import './CreatorStep.css';
 import { useState } from 'react';
+import { db } from "../../firebase";
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 
 
 const CreatorStep5 = ({ formData, onFinish }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
+
 
   const inviteUrl = "http：//ｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗ";
 
@@ -15,6 +18,10 @@ const CreatorStep5 = ({ formData, onFinish }) => {
     onFinish();
     navigate('/host');
   }
+  // const handleFinish = async() => {
+  //   onFinish();
+  //   navigate('/host');
+  // }
   const handleCopy = () => {
     navigator.clipboard.writeText(inviteUrl)
       .then(() => setCopied(true))

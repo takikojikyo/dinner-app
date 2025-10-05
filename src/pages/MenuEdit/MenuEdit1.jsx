@@ -19,7 +19,7 @@ const MenuEdit1 = () => {
 
           <button className='GestStep1_button GestStep1_button1'
           onClick={()=>{setCategory("肉");
-            navigate("/MenuEdit2");
+            navigate("/host/MenuEdit2");
           }}
           >
             <div className='GestStep1_button_box'>
