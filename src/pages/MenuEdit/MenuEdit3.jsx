@@ -64,7 +64,7 @@ const MenuEdit3 = () => {
           <button className='appbutton appbutton1' onClick={()=>navigate("/")}>この変更を保存</button>
 
 
-          <Link className='Geststep2button2 menuEdit3_nav' to="/MenuEdit2">＜ 料理選択へ戻る</Link>
+          <Link className='Geststep2button2 menuEdit3_nav' to="/host/MenuEdit2">＜ 料理選択へ戻る</Link>
 
 
 

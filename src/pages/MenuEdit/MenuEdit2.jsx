@@ -15,7 +15,7 @@ const MenuEdit2 = () => {
 
   const handleMenuClick=(item)=>{
     setSelectedMenu(item);
-    navigate("/MenuEdit3");
+    navigate("/host/MenuEdit3");
   }
 
   return (
@@ -48,7 +48,7 @@ const MenuEdit2 = () => {
 
 
 
-          <Link className='Geststep2button2' to="/MenuEdit1">＜ カテゴリ選択へ戻る</Link>
+          <Link className='Geststep2button2' to="/host/MenuEdit1">＜ カテゴリ選択へ戻る</Link>
         </div>
 
       </div>
