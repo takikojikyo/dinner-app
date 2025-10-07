@@ -16,6 +16,7 @@ const CreatorSignUp = ({ onNext }) => {
     mealDays: 0,
     fishDays: 0,
     otherDays: 0,
+    selectMenus: [],
     voteDeadline: '',
   };
   const [step, setStep] = useState(initialStep);

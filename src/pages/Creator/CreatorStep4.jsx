@@ -12,7 +12,7 @@ const CreatorStep4 = ({onNext}) => {
       alert("曜日を選択してください。")
       return;
     }
-    onNext({voteDeadlime:selectDay})
+    onNext({voteDeadline:selectDay})
   }
 
   return (
