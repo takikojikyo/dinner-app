@@ -31,7 +31,7 @@ const MenuEdit1 = () => {
 
           <button className='GestStep1_button GestStep1_button2'
           onClick={()=>{setCategory("魚");
-            navigate("/MenuEdit2");
+            navigate("/host/MenuEdit2");
           }}
           >
             <div className='GestStep1_button_box'>
@@ -43,7 +43,7 @@ const MenuEdit1 = () => {
 
           <button className='GestStep1_button GestStep1_button3'
           onClick={()=>{setCategory("その他");
-            navigate("/MenuEdit2");
+            navigate("/host/MenuEdit2");
           }}
           >
             <div className='GestStep1_button_box'>

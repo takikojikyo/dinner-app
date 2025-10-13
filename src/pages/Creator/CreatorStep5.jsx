@@ -2,8 +2,8 @@ import { useNavigate } from 'react-router-dom';
 import './CreatorStep.css';
 import { useState } from 'react';
 import { auth, db } from "../../firebase";
-import { collection, getDocs, doc, setDoc, getDoc } from "firebase/firestore";
-
+import {  doc, setDoc} from "firebase/firestore";
+// collection, getDocs,getDoc 
 
 const CreatorStep5 = ({ formData, onFinish }) => {
   const navigate = useNavigate();
@@ -13,58 +13,58 @@ const CreatorStep5 = ({ formData, onFinish }) => {
   const inviteUrl = "http：//ｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗｗ";
 
 
-  const copyBaseMenuToUser = async (userId) => {
-    const userMenuRef = collection(db, "users", userId, "menus");
+  // const copyBaseMenuToUser = async (userId) => {
+  //   const userMenuRef = collection(db, "users", userId, "menus");
 
-    const userRef = doc(db, "users", userId);
-    const userSnap = await getDoc(userRef);
-    if (userSnap.exists() && userSnap.data().copied) {
-      console.log("すでにコピー済みです");
-      return;
-    }
-    const baseMenusSnap = await getDocs(collection(db, "baseMenus"));
-    const promises = baseMenusSnap.docs.map((docSnap) =>
-      setDoc(doc(userMenuRef, docSnap.id), docSnap.data())
-    );
-    await Promise.all(promises);
-    await setDoc(userRef, { copied: true }, { merge: true });
-    console.log("baseMenus コピー完了");
-  };
+  //   const userRef = doc(db, "users", userId);
+  //   const userSnap = await getDoc(userRef);
+  //   if (userSnap.exists() && userSnap.data().copied) {
+  //     console.log("すでにコピー済みです");
+  //     return;
+  //   }
+  //   const baseMenusSnap = await getDocs(collection(db, "baseMenus"));
+  //   const promises = baseMenusSnap.docs.map((docSnap) =>
+  //     setDoc(doc(userMenuRef, docSnap.id), docSnap.data())
+  //   );
+  //   await Promise.all(promises);
+  //   await setDoc(userRef, { copied: true }, { merge: true });
+  //   console.log("baseMenus コピー完了");
+  // };
 
-  const copyIngredientsToUser = async (userId) => {
-    const userIngredientsRef = collection(db, "users", userId, "ingredients");
-    const ingredientsSnap = await getDocs(collection(db, "ingredients"));
-    const promises = ingredientsSnap.docs.map((docSnap) =>
-      setDoc(doc(userIngredientsRef, docSnap.id), docSnap.data())
-    );
-    await Promise.all(promises);
-    console.log("ingredients コピー完了")
-  };
+  // const copyIngredientsToUser = async (userId) => {
+  //   const userIngredientsRef = collection(db, "users", userId, "ingredients");
+  //   const ingredientsSnap = await getDocs(collection(db, "ingredients"));
+  //   const promises = ingredientsSnap.docs.map((docSnap) =>
+  //     setDoc(doc(userIngredientsRef, docSnap.id), docSnap.data())
+  //   );
+  //   await Promise.all(promises);
+  //   console.log("ingredients コピー完了")
+  // };
 
-  const copyAvailableMenus = async (userId, selectMenus) => {
+  // const copyAvailableMenus = async (userId, selectMenus) => {
 
-    const promises = selectMenus.map((menu) => {
-      const parentMenuId = menu.baseMenuId || `custom-${Date.now()}`;
-      const availableMenusRef = collection(
-        db,
-        "users",
-        userId,
-        "menus",
-        parentMenuId,
-        "availableMenus"
-      );
-      const docData={
-        name:menu.name,
-        category:menu.category,
-        ingredients:menu.ingredients||[],
-        isCustom:menu.isCustom||false,
-      }
-      return setDoc(doc(availableMenusRef, menu.name), docData);
-    });
+  //   const promises = selectMenus.map((menu) => {
+  //     const parentMenuId = menu.baseMenuId || `custom-${Date.now()}`;
+  //     const availableMenusRef = collection(
+  //       db,
+  //       "users",
+  //       userId,
+  //       "menus",
+  //       parentMenuId,
+  //       "availableMenus"
+  //     );
+  //     const docData={
+  //       name:menu.name,
+  //       category:menu.category,
+  //       ingredients:menu.ingredients||[],
+  //       isCustom:menu.isCustom||false,
+  //     }
+  //     return setDoc(doc(availableMenusRef, menu.name), docData);
+  //   });
 
-    await Promise.all(promises);
-    console.log("availableMenus コピー完了");
-  };
+  //   await Promise.all(promises);
+  //   console.log("availableMenus コピー完了");
+  // };
 
 
   const saveSetupData = async (userId, formData) => {
@@ -80,11 +80,6 @@ const CreatorStep5 = ({ formData, onFinish }) => {
 
 
 
-  // const handleFinish = () => {
-  //   console.log(formData);
-  //   onFinish();
-  //   navigate('/host');
-  // }
   const handleFinish = async () => {
     if (!auth.currentUser) return alert("ログインが必要です");
     const userId = auth.currentUser.uid;
@@ -96,12 +91,12 @@ const CreatorStep5 = ({ formData, onFinish }) => {
       }, { merge: true });
       await saveSetupData(userId, formData);
 
-      await copyBaseMenuToUser(userId);
-      await copyIngredientsToUser(userId);
+      // await copyBaseMenuToUser(userId);
+      // await copyIngredientsToUser(userId);
 
-      if(formData.selectMenus){
-        await copyAvailableMenus(userId,formData.selectMenus);
-      }
+      // if(formData.selectMenus){
+      //   await copyAvailableMenus(userId,formData.selectMenus);
+      // }
 
       console.log("ユーザー用データ作成完了");
       onFinish();

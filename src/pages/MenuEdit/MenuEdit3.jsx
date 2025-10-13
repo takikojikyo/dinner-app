@@ -1,7 +1,9 @@
 
+import { doc, updateDoc } from 'firebase/firestore';
 import { useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { auth, db } from '../../firebase';
 
 
 
@@ -27,6 +29,25 @@ const MenuEdit3 = () => {
     setIngredient([...ingredient, input]);
     setInput("");
   }
+  const handleSave=async()=>{
+    try{
+      const userId=auth.currentUser?.uid;
+      if(!userId){
+        alert("ユーザーが確認できません");
+        return;
+      }
+
+      const menuRef=doc(db,"users",userId,"availableMenus",selectedMenu.id);
+      await updateDoc(menuRef,{
+        ingredients:ingredient,
+      });
+      alert("変更を保存しました");
+      navigate("/");
+    }catch(error){
+      console.error("保存中にエラーが発生しました：",error);
+      alert("保存に失敗しました");
+    }
+  };
 
   
   if (!selectedMenu) {
@@ -61,7 +82,7 @@ const MenuEdit3 = () => {
             <button onClick={ingredientAddClick}>追加</button>
           </div>
 
-          <button className='appbutton appbutton1' onClick={()=>navigate("/")}>この変更を保存</button>
+          <button className='appbutton appbutton1' onClick={handleSave}>この変更を保存</button>
 
 
           <Link className='Geststep2button2 menuEdit3_nav' to="/host/MenuEdit2">＜ 料理選択へ戻る</Link>
