@@ -12,7 +12,7 @@ import { useNavigate } from 'react-router-dom';
 
 
 
-const CreatorStep1 = ({ onNext }) => {
+const CreatorStep1 = ({ onNext,setIsFirstTime }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [signerror, setSignError] = useState("");
@@ -77,6 +77,7 @@ const CreatorStep1 = ({ onNext }) => {
   const loginGoogle = async () => {
     try {
       await signInWithPopup(auth, provider);
+      setIsFirstTime(false);
       navigate("/")
     } catch (e) {
       setLoginError("ログイン失敗：" + e.message);

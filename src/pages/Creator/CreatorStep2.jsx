@@ -1,5 +1,6 @@
 import { useState } from "react";
-
+import { auth, db } from "../../firebase";
+import { collection, getDocs, doc, setDoc, getDoc, } from "firebase/firestore";
 
 
 const CreatorStep2 = ({ onNext }) => {
@@ -10,18 +11,61 @@ const CreatorStep2 = ({ onNext }) => {
   const remainingDays = totalDays - mealDays;
   const fishOptions = Array.from({ length: remainingDays }, (_, i) => i + 1)
 
-  const handleNext = () => {
-    if(mealDays===0||fishDays===0){
+const copyCollectionToUser = async (userId,collectionName) => {
+   const userStatusRef = doc(db, "users", userId,"copiedStatus",collectionName);
+    const statusSnap = await getDoc( userStatusRef);
+    if (statusSnap.exists() && statusSnap.data().copied) {
+      console.log(`${collectionName}はすでにコピー済みです`);
+      return;
+    }
+
+
+
+
+      const userRef = collection(db, "users", userId, collectionName);
+      const snap = await getDocs(collection(db, collectionName));
+
+      const promises = snap.docs.map((docSnap) =>
+        setDoc(doc(userRef, docSnap.id), docSnap.data())
+      );
+      await Promise.all(promises);
+      console.log(`${collectionName} コピー完了`)
+    };
+
+
+  const handleNext = async() => {
+    if (mealDays === 0 || fishDays === 0) {
       alert("肉料理、魚料理の日数をチェックしてください。")
       return;
     }
 
-    onNext({
-      mealDays,
-      fishDays,
-      otherDays,
-    });
+    try{
+      const userId=auth.currentUser?.uid;
+      if(!userId){
+        alert("ユーザー情報を確認できません。ログインしてください。");
+        return;
+      }
+
+      await Promise.all([
+        copyCollectionToUser(userId,"ingredientsMaster"),
+        copyCollectionToUser(userId,"ingredients"),
+      ]);
+
+      console.log("すべてのデータコピー完了");
+   
+
+      onNext({
+        mealDays,
+        fishDays,
+        otherDays,
+      }); 
     
+    }catch(error){
+      console.error("材料コピー中にエラー:",error);
+      alert("材料データの準備に失敗しました。もう一度お試しください。");
+    }
+   
+
   }
 
   return (

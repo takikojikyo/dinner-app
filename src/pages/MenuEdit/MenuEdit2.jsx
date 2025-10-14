@@ -1,19 +1,44 @@
 
-import { databaseMenuList } from '../../databaseMenuList';
+// import { databaseMenuList } from '../../databaseMenuList';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
+import { collection, getDocs } from 'firebase/firestore';
+import { auth, db } from '../../firebase';
+import { useEffect, useState } from 'react';
 
 
 
 const MenuEdit2 = () => {
-  const {category,setSelectedMenu} = useOutletContext();
+  const { category, setSelectedMenu } = useOutletContext();
+  const [filteredMenu,setFilteredMenu]=useState([]);
   const navigate = useNavigate();
 
+useEffect(()=>{
+  const fetchMenus=async()=>{
+    try{
+      const userId = auth.currentUser.uid;
+      if(!userId)return;
 
+      const snapshot = await getDocs(collection(db, "users", userId, "availableMenus"));
+      const menus=snapshot.docs.map(doc=>({
+        id:doc.id,
+        ...doc.data(),
+      }));
 
-  const filteredMenu = databaseMenuList.filter(item => item.category === category);
+      const filtered=menus.filter(item => item.category === category);
+      setFilteredMenu(filtered);
+    }catch(error){
+      console.error("メニューの取得に失敗しました:", error);
+    }
+  };
+  fetchMenus();
+},[category]);
+ 
+  
 
-  const handleMenuClick=(item)=>{
+  
+
+  const handleMenuClick = (item) => {
     setSelectedMenu(item);
     navigate("/host/MenuEdit3");
   }
@@ -23,19 +48,19 @@ const MenuEdit2 = () => {
     <div className="MenuEdit2">
       <div className="container">
         <div className="Step_inner">
-          
+
           <h3>料理の材料を編集</h3>
 
           <h4>メニューを選択</h4>
 
-          {filteredMenu.length===0&&<p>このカテゴリにはメニューがありません</p>}
+          {filteredMenu.length === 0 && <p>このカテゴリにはメニューがありません</p>}
           {
-            filteredMenu.map((item,index) => (
+            filteredMenu.map((item, index) => (
               <button
                 key={`${item.id}-${index}`}
                 className="Geststep2_button"
                 tabIndex={0}
-                onClick={()=>handleMenuClick(item)} 
+                onClick={() => handleMenuClick(item)}
               >
                 <div className="Geststep2_button_box">
                   <p>{item.name}</p>

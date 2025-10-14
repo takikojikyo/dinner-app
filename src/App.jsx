@@ -19,6 +19,7 @@ import MenuEdit1 from './pages/MenuEdit/MenuEdit1';
 import MenuEdit2 from './pages/MenuEdit/MenuEdit2';
 import MenuEdit3 from './pages/MenuEdit/MenuEdit3';
 import CreatorSignUp from './pages/Creator/CreatorSignUp';
+// import IngredientAliases from './components/IngredientAliases';
 // import IngredientAdd from './pages/IngredientAdd';
 // import BaseMenuListTest from './pages/BaseMenuListTest';
 // import BaseMenuList from './components/BaseMenuList';
@@ -67,7 +68,7 @@ function App() {
           path="/Creator-signup"
           element={
             isFirstTime ? (
-              <CreatorSignUp onNext={() => setIsFirstTime(false)} />
+              <CreatorSignUp onNext={() => setIsFirstTime(false)} setIsFirstTime={setIsFirstTime} />
             ) : (
               <Navigate to="/host" replace />
             )
@@ -101,6 +102,9 @@ function App() {
 
         {/* 材料追加用 */}
         {/* <Route path="/ingredient-add" element={<IngredientAdd/>} /> */}
+
+        {/* 材料エイリアス追加用 */}
+         {/* <Route path="/Ingredient-Aliases" element={<IngredientAliases />} />   */}
 
         {/* Not Found */}
 
