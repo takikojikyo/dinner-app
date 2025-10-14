@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import './CreatorStep.css';
 import { addDoc, collection, doc, getDocs, setDoc } from 'firebase/firestore';
 import { auth, db } from '../../firebase';
+import * as wanakana from 'wanakana';
 
 
 const DishList = ({ title, icon, dishes, selected, onToggle }) => (
@@ -27,49 +28,62 @@ const DishList = ({ title, icon, dishes, selected, onToggle }) => (
 
 )
 
-const IngredientsInput = ({ ingredients, setIngredients, customIngredient, setCustomIngredient, handleRegisterMenu }) => {
+const IngredientsInput = ({ ingredients, setIngredients, customIngredient, setCustomIngredient, handleRegisterMenu, allIngredients, setAllIngredients, filteredSuggestions, setFilteredSuggestions }) => {
 
-  const [allIngredients, setAllIngredients] = useState([]);
-  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
-
+  // const [allIngredients, setAllIngredients] = useState([]);
+  // const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   useEffect(() => {
     const fetchIngredientMaster = async () => {
       const userId = auth.currentUser.uid;
       const snapshot = await getDocs(collection(db, "users", userId, "ingredientsMaster"));
-      const data = snapshot.docs.map(docSnap => docSnap.data().name);
+      const data = snapshot.docs.map(docSnap => {
+        const d = docSnap.data();
+        return {
+          name: d.name, aliases: d.aliases || []
+        };
+      });
       setAllIngredients(data);
     }
     fetchIngredientMaster();
   }, []);
 
-  useEffect(() => {
-    if (customIngredient.trim() === "") {
-      setFilteredSuggestions([]);
-      return;
-    }
+    useEffect(() => {
+      if (customIngredient.trim() === "") {
+        setFilteredSuggestions([]);
+        return;
+      }
+  
+      const inputHira = wanakana.toHiragana(customIngredient.trim());
+      const filtered = allIngredients.filter(item => {
+        const nameHira = wanakana.toHiragana(item.name);
+        const nameMatch=nameHira.startsWith(inputHira);
+        const aliasesMatch = item.aliases.some(
+          alias => wanakana.toHiragana(alias)===inputHira
+        );
+        return nameMatch || aliasesMatch;
+      });
+  
+      setFilteredSuggestions(filtered);
+    }, [customIngredient, allIngredients]);
 
-    const filtered = allIngredients.filter(item =>
-      item.toLowerCase().includes(customIngredient.toLowerCase())
-    );
-    setFilteredSuggestions(filtered);
+  const handleAddIngredient = async (selected) => {
+    if (!selected) return;
+    const name = selected.name;
 
-  }, [customIngredient, allIngredients]);
-
-  const handleAddIngredient = async (name) => {
-    const trimmed = name.trim();
-    if (!trimmed) return;
-
-    if (!ingredients.some(i => i === trimmed)) {
-      setIngredients(prev => [...prev, trimmed])
+    if (!ingredients.includes(name)) {
+      setIngredients(prev => [...prev, name])
     };
 
-    if (!allIngredients.includes(trimmed)) {
+    // DBにない正規名なら追加
+    const exists = allIngredients.some(i => i.name === name);
+    if (!exists) {
       try {
         const userId = auth.currentUser.uid;
-        await setDoc(doc(db, "users", userId, "ingredientsMaster", trimmed), { name: trimmed });
-        setAllIngredients(prev => [...prev, trimmed]);
+        const safeId = encodeURIComponent(name);
+        await setDoc(doc(db, "users", userId, "ingredientsMaster", safeId), { name, aliases: [] });
+        setAllIngredients(prev => [...prev, { name, aliases: [] }]);
 
-        await setDoc(doc(db, "users", userId, "ingredients", trimmed), { name: trimmed });
+        await setDoc(doc(db, "users", userId, "ingredients", safeId), { name });
 
       } catch (error) {
         console.error("材料追加失敗:", error);
@@ -98,11 +112,11 @@ const IngredientsInput = ({ ingredients, setIngredients, customIngredient, setCu
             {
               filteredSuggestions.map((item, index) => (
                 <li
-                  key={`ingradient-${index}`}
+                  key={`ingredient-${index}`}
                   className='suggestion-item'
                   onClick={() => handleAddIngredient(item)}
                 >
-                  {item}
+                  {item.name}
                 </li>
               ))}
           </ul>
@@ -123,7 +137,7 @@ const IngredientsInput = ({ ingredients, setIngredients, customIngredient, setCu
       <div className="CreateStep3_box2_button_area">
         <button
           className='CreateStep3_box2_button1 appbutton3'
-          onClick={() => handleAddIngredient(customIngredient)}
+          onClick={() => handleAddIngredient({ name: customIngredient, aliases: [] })}
         >
           材料を追加
         </button>
@@ -155,7 +169,8 @@ const CreatorStep3 = ({ mealDays, fishDays, otherDays, onNext }) => {
   const [ingredients, setIngredients] = useState([]);
   const [selectMenus, setSelectMenus] = useState([]);
   const [baseMenus, setBaseMenus] = useState({ 肉: [], 魚: [], その他: [] })
-
+  const [allIngredients, setAllIngredients] = useState([]);
+  const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
 
 
@@ -305,6 +320,10 @@ const CreatorStep3 = ({ mealDays, fishDays, otherDays, onNext }) => {
               customIngredient={customIngredient}
               setCustomIngredient={setCustomIngredient}
               handleRegisterMenu={handleRegisterMenu}
+              allIngredients={allIngredients}
+              setAllIngredients={setAllIngredients}
+              filteredSuggestions={filteredSuggestions}
+              setFilteredSuggestions={setFilteredSuggestions}
             />
 
 
