@@ -5,7 +5,7 @@
 .MenuEdit2 ul{
   margin-bottom: var( --space-md);
 }
-.MenuEdit2 ul li{
+.MenuEdit2 .Step_inner>ul>li{
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -13,6 +13,7 @@
   margin-bottom: var(--space-xs);
   border-bottom: 1px solid var(--color-border);
 }
+
 .MenuEdit2 ul li p{
   font-size: var( --font-md);
   font-weight: bold;
@@ -26,15 +27,19 @@
 }
 .MenuEdit3_addbox{
 display: flex;
-align-items: center;
+align-items: start;
 justify-content: space-between;
 margin-bottom: var(--space-md);
 padding-bottom: var(--space-xs);
   border-bottom: 1px solid var(--color-border);
 }
 .MenuEdit3_addbox input{
+  width: 100%;
+}
+.MenuEdit3_addbox_2{
   width: 75%;
 }
+
 .menuEdit3_nav{
   margin-top: var(--space-md);
 }
