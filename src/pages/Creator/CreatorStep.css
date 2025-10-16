@@ -92,25 +92,31 @@
 .CreateStep2_box1{
   margin-bottom: 3.5rem;
 }
-.CreateStep2_box1 li:not(:last-of-type){
+.CreateStep2_box1 fieldset:not(:last-of-type){
   margin-bottom: var(--space-md);
   padding-bottom: var(--space-xs);
   border-bottom: 1px solid var(--color-border);
 }
-.CreateStep2_box1 li img{
+.CreateStep2_box1 fieldset{
+   border: none;
+}
+.CreateStep2_box1 legend{
+  font-weight: bold;
+}
+.CreateStep2_box1 fieldset img{
   width: 100px;
 }
-.CreateStep2_box1 li p{
+.CreateStep2_box1 fieldset p{
   font-size: var(--font-md);
   font-weight: bold;
   margin-bottom: var(--space-xs);
 }
-.CreateStep2_box1 li input{
+.CreateStep2_box1 fieldset input{
   transform: scale(1.2); 
   margin-left: var( --space-md);
-  margin-right: var(--space-xs); 
+  margin-right: 3px; 
 }
-.CreateStep2_box1 li label{
+.CreateStep2_box1 fieldset label{
   font-size: var(--font-md);
 }
 
