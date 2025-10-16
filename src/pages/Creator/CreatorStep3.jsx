@@ -74,7 +74,7 @@ const IngredientsInput = ({ ingredients, setIngredients, customIngredient, setCu
       setIngredients(prev => [...prev, name])
     };
 
-    // DBにない正規名なら追加
+
     const exists = allIngredients.some(i => i.name === name);
     if (!exists) {
       try {

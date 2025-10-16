@@ -1,13 +1,14 @@
 
-import { collection, doc, getDocs, setDoc, updateDoc } from 'firebase/firestore';
+import { collection, doc, getDocs, setDoc, updateDoc, writeBatch } from 'firebase/firestore';
 import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { auth, db } from '../../firebase';
 import * as wanakana from 'wanakana';
+import { onAuthStateChanged } from 'firebase/auth';
 
 
-const IngredientsInputMenuEdit3 = ({   
+const IngredientsInputMenuEdit3 = ({
   ingredient,
   setIngredient,
   customIngredient,
@@ -21,9 +22,10 @@ const IngredientsInputMenuEdit3 = ({
   // const [allIngredients, setAllIngredients] = useState([]);
   // const [filteredSuggestions, setFilteredSuggestions] = useState([]);
 
+
+
   useEffect(() => {
-    const fetchIngredientMaster = async () => {
-      const userId = auth.currentUser.uid;
+    const fetchIngredientMaster = async (userId) => {
       const snapshot = await getDocs(collection(db, "users", userId, "ingredientsMaster"));
       const data = snapshot.docs.map(docSnap => {
         const d = docSnap.data();
@@ -32,8 +34,13 @@ const IngredientsInputMenuEdit3 = ({
         };
       });
       setAllIngredients(data);
-    }
-    fetchIngredientMaster();
+    };
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (!user) return;
+      fetchIngredientMaster(user.uid);
+    });
+    return () => unsubscribe();
+
   }, []);
 
   useEffect(() => {
@@ -41,18 +48,25 @@ const IngredientsInputMenuEdit3 = ({
       setFilteredSuggestions([]);
       return;
     }
+    const handler = setTimeout(() => {
+      if (customIngredient.trim() === "") {
+        setFilteredSuggestions([]);
+        return;
+      }
 
-    const inputHira = wanakana.toHiragana(customIngredient.trim());
-    const filtered = allIngredients.filter(item => {
-      const nameHira = wanakana.toHiragana(item.name);
-      const nameMatch=nameHira.startsWith(inputHira);
-      const aliasesMatch = item.aliases.some(
-        alias => wanakana.toHiragana(alias)===inputHira
-      );
-      return nameMatch || aliasesMatch;
-    });
+      const inputHira = wanakana.toHiragana(customIngredient.trim());
+      const filtered = allIngredients.filter(item => {
+        const nameHira = wanakana.toHiragana(item.name);
+        const nameMatch = nameHira.startsWith(inputHira);
+        const aliasesMatch = item.aliases.some(
+          alias => wanakana.toHiragana(alias).startsWith(inputHira)
+        );
+        return nameMatch || aliasesMatch;
+      });
 
-    setFilteredSuggestions(filtered);
+      setFilteredSuggestions(filtered);
+    }, 300);
+    return () => clearTimeout(handler);
   }, [customIngredient, allIngredients]);
 
   const handleAddIngredient = async (selected) => {
@@ -91,9 +105,6 @@ const IngredientsInputMenuEdit3 = ({
 
 
 
-
-
-
     <div className="MenuEdit3_addbox">
       <div className="MenuEdit3_addbox_2">
         <input
@@ -106,10 +117,11 @@ const IngredientsInputMenuEdit3 = ({
           filteredSuggestions.length > 0 && (
             <ul className='autocomplete-suggestions'>
               {
-                filteredSuggestions.map((item, index) => (
+                filteredSuggestions.map((item) => (
                   <li
-                    key={`menuedit-${index}`}
+                    key={item.name}
                     className='suggestion-item'
+                    role='option'
                     onClick={() => handleAddIngredient(item)}
                   >
                     {item.name}
@@ -138,6 +150,11 @@ const MenuEdit3 = () => {
   const [filteredSuggestions, setFilteredSuggestions] = useState([]);
   const navigate = useNavigate();
 
+
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, () => { });
+  //   return () => unsubscribe();
+  // }, []);
   const ingredientDeleteClick = (index) => {
     const newingredients = ingredient.filter((_, i) => {
       return i !== index;
@@ -163,8 +180,15 @@ const MenuEdit3 = () => {
       try {
         const userId = auth.currentUser.uid;
         const safeId = encodeURIComponent(trimmed);
-        await setDoc(doc(db, "users", userId, "ingredientsMaster", safeId), { name: trimmed, aliases: [] });
-        await setDoc(doc(db, "users", userId, "ingredients", safeId), { name: trimmed });
+        const batch = writeBatch(db);
+        const masterRef = doc(db, "users", userId, "ingredientsMaster", safeId);
+        const ingRef = doc(db, "users", userId, "ingredients", safeId);
+
+        batch.set(masterRef, { name: trimmed, aliases: [] });
+        batch.set(ingRef, { name: trimmed });
+        await batch.commit();
+        // await setDoc(doc(db, "users", userId, "ingredientsMaster", safeId), { name: trimmed, aliases: [] });
+        // await setDoc(doc(db, "users", userId, "ingredients", safeId), { name: trimmed });
         setAllIngredients(prev => [...prev, { name: trimmed, aliases: [] }]);
 
       } catch (error) {
