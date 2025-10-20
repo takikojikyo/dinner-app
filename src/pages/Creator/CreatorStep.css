@@ -130,6 +130,12 @@
   width: 100px;
   margin-bottom: var(--space-sm);
 }
+.CreateStep3_comment{
+  font-size: var(--font-md);
+  text-align: left;
+  color: #FA5935;
+  margin-bottom: var(--space-sm);
+}
 .CreateStep3_list li{
   display: flex;
   align-items: center;

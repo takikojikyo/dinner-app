@@ -7,6 +7,7 @@ import CreatorStep4 from "./CreatorStep4";
 import { useLocation } from "react-router-dom";
 
 
+
 const CreatorSignUp = ({ onNext,setIsFirstTime }) => {
   const location = useLocation();
   const initialStep = location.state?.step || 1;  // ← step に合わせる
@@ -42,7 +43,7 @@ const CreatorSignUp = ({ onNext,setIsFirstTime }) => {
         />
       )}
       {step === 4 && <CreatorStep4 onNext={handleNextStep} />}
-      {step === 5 && <CreatorStep5 formData={formData} onFinish={onNext}/>}
+      {step === 5 && <CreatorStep5  onFinish={onNext}/>}
     </div>
 
   )

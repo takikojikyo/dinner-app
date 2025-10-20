@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { auth, db } from "../../firebase";
-import { collection, getDocs, doc, setDoc, getDoc, writeBatch, } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 
 
 const CreatorStep2 = ({ onNext }) => {
@@ -13,26 +13,26 @@ const CreatorStep2 = ({ onNext }) => {
   const [loading, setLoading] = useState(false);
 
   
-  const copyCollectionToUser = async (userId, collectionName) => {
-    const userStatusRef = doc(db, "users", userId, "copiedStatus", collectionName);
-    const statusSnap = await getDoc(userStatusRef);
-    if (statusSnap.exists() && statusSnap.data().copied) {
-      console.log(`${collectionName}はすでにコピー済みです`);
-      return;
-    }
+  // const copyCollectionToUser = async (userId, collectionName) => {
+  //   const userStatusRef = doc(db, "users", userId, "copiedStatus", collectionName);
+  //   const statusSnap = await getDoc(userStatusRef);
+  //   if (statusSnap.exists() && statusSnap.data().copied) {
+  //     console.log(`${collectionName}はすでにコピー済みです`);
+  //     return;
+  //   }
 
-    const srcSnap = await getDocs(collection(db, collectionName));
-    const userRef = collection(db, "users", userId, collectionName);
-    const batch = writeBatch(db);
+  //   const srcSnap = await getDocs(collection(db, collectionName));
+  //   const userRef = collection(db, "users", userId, collectionName);
+  //   const batch = writeBatch(db);
 
-    srcSnap.forEach((docsnap) => {
-      const destRef = doc(userRef, docsnap.id);
-      batch.set(destRef, docsnap.data());
-    });
-    await batch.commit();
-    await setDoc(userStatusRef, { copied: true })
-    console.log(`${collectionName} コピー完了`)
-  };
+  //   srcSnap.forEach((docsnap) => {
+  //     const destRef = doc(userRef, docsnap.id);
+  //     batch.set(destRef, docsnap.data());
+  //   });
+  //   await batch.commit();
+  //   await setDoc(userStatusRef, { copied: true })
+  //   console.log(`${collectionName} コピー完了`)
+  // };
 
 
   const handleNext = async () => {
@@ -53,12 +53,15 @@ const CreatorStep2 = ({ onNext }) => {
         return;
       }
 
-      await Promise.all([
-        copyCollectionToUser(userId, "ingredientsMaster"),
-        copyCollectionToUser(userId, "ingredients"),
-      ]);
-
-      console.log("すべてのデータコピー完了");
+      const step2Rf=doc(db, "users", userId, "setup", "info");
+      await setDoc(step2Rf,{
+        mealDays: mealDays,
+      fishDays: fishDays,
+      otherDays: otherDays,
+      updatedAt: new Date(),
+      step2setup: true,
+      }, { merge: true })
+      console.log("Step2データ保存完了");
 
       onNext({
         mealDays,
@@ -67,8 +70,8 @@ const CreatorStep2 = ({ onNext }) => {
       });
 
     } catch (error) {
-      console.error("材料コピー中にエラー:", error);
-      alert("材料データの準備に失敗しました。もう一度お試しください。");
+      console.error("次のステップ準備中にエラー:", error);
+      alert("データの準備に失敗しました。もう一度お試しください。");
     } finally {
       setLoading(false);
     }
@@ -144,7 +147,7 @@ const CreatorStep2 = ({ onNext }) => {
 
           </div>
           <button className="CreateStepbutton" onClick={handleNext} disabled={loading}>
-            {loading?"コピー中...":"次へ"}
+            {loading?"保存中...":"次へ"}
           </button>
 
         </div>

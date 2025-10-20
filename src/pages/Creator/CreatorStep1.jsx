@@ -1,13 +1,14 @@
 
 import { useState } from 'react';
 import './CreatorStep.css';
-import { auth, provider } from "../../firebase";
+import { auth, db, provider } from "../../firebase";
 import {
   signInWithEmailAndPassword,
   signInWithPopup,
   createUserWithEmailAndPassword,
 } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { doc, getDoc, setDoc } from 'firebase/firestore';
 
 
 
@@ -22,7 +23,13 @@ const CreatorStep1 = ({ onNext,setIsFirstTime }) => {
   const handleNext = async (e) => {
     e.preventDefault();
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential=await createUserWithEmailAndPassword(auth, email, password);
+      const user=userCredential.user;
+      await setDoc(doc(db,"users",user.uid),{
+        email:user.email,
+        createdAt:new Date(),
+      });
+
       onNext({ email, password });
     } catch (err) {
       switch (err.code) {
@@ -47,6 +54,14 @@ const CreatorStep1 = ({ onNext,setIsFirstTime }) => {
       const user = result.user;
       const googleEmail = user.email;
 
+      const userRef=doc(db,"users",user.uid);
+      const docSnap=await getDoc(userRef);
+      if(!docSnap.exists()){
+        await setDoc(userRef,{
+          email:googleEmail,
+          createdAt:new Date(),
+        })
+      }
       onNext({ email: googleEmail, password: "" });
     } catch (e) {
       setSignError("ログイン失敗：" + e.message);
@@ -78,7 +93,7 @@ const CreatorStep1 = ({ onNext,setIsFirstTime }) => {
     try {
       await signInWithPopup(auth, provider);
       setIsFirstTime(false);
-      navigate("/")
+      navigate("/host")
     } catch (e) {
       setLoginError("ログイン失敗：" + e.message);
     }

@@ -1,15 +1,35 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { onAuthStateChanged } from 'firebase/auth';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { auth } from '../firebase';
+
 
 
 
 const Header_Host = ({ formData }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [authReady, setAuthReady] = useState(false);
+  const [checkingAuth, setCheckingAuth] = useState(true);
   const navigate = useNavigate();
 
   const toggleMenu = () => setIsMenuOpen(prev => !prev);
 
   const handleLinkClick = () => setIsMenuOpen(false);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      
+      if (user) {
+        setAuthReady(true);
+      } else {
+        setAuthReady(false);
+      }
+
+      setCheckingAuth(false);
+
+    });
+    return () => unsubscribe();
+  }, []);
 
 
   return (
@@ -47,16 +67,27 @@ const Header_Host = ({ formData }) => {
           <div className={`Header_menu ${isMenuOpen ? "open" : "close"}`}>
             <ul className='Header_menu_list'>
               <li>
-                <Link to="/host" onClick={handleLinkClick}>
+                <button
+                  className="Header_menu_button"
+                  onClick={() => {
+                    handleLinkClick();
+                    navigate("/host");
+                  }}
+                >
                   <img src="/4.png" alt="カレンダーアイコン" />
                   <p className='Header_menu_list_title'>１週間の献立一覧</p>
-                </Link>
+                </button>
               </li>
               <li>
-                <Link to="/host/shopping-list" onClick={handleLinkClick}>
+                <button
+                  className="Header_menu_button"
+                  onClick={() => {
+                    handleLinkClick();
+                    navigate("/host/shopping-list");
+                  }}>
                   <img src="/5.png" alt="買い物かごアイコン" />
                   <p className='Header_menu_list_title'>買い出しリスト</p>
-                </Link>
+                </button>
               </li>
               <li>
                 <div className="header_box">
@@ -65,19 +96,28 @@ const Header_Host = ({ formData }) => {
                 </div>
                 <ul>
                   <li>
-                    <Link to="/host/MenuEdit1" onClick={handleLinkClick}>
+                    <button
+                      className="Header_menu_button"
+                      onClick={() => {
+                        handleLinkClick();
+                        navigate("/host/MenuEdit1");
+                      }}>
                       <p className='Header_menu_list_settingtitle'>料理の材料を編集</p>
-                    </Link>
+                    </button>
                   </li>
-                  <li>
-                    <Link
-                      to="/creator-signup"
-                      state={{ step: 2, formData: formData }}
-                      onClick={handleLinkClick}
-                    >
-                      <p className='Header_menu_list_settingtitle'>設定やり直し<br /><span>（料理バランス、作れるメニュー、投票締め切り曜日の変更、家族を招待）</span></p>
-                    </Link>
-                  </li>
+                  {!checkingAuth && authReady && (
+                    <li>
+                      <button
+                        className="Header_menu_button"
+                        onClick={() => {
+                          handleLinkClick();
+                          navigate("/Creator-signup", { state: { step: 2, formData } })
+                        }}>
+                        <p className='Header_menu_list_settingtitle'>設定やり直し<br /><span>（料理バランス、作れるメニュー、投票締め切り曜日の変更、家族を招待）</span></p>
+                      </button>
+                    </li>
+                  )}
+
 
                 </ul>
               </li>

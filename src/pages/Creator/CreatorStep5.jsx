@@ -1,11 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import './CreatorStep.css';
 import { useState } from 'react';
-import { auth, db } from "../../firebase";
-import {  doc, setDoc} from "firebase/firestore";
-// collection, getDocs,getDoc 
 
-const CreatorStep5 = ({ formData, onFinish }) => {
+
+
+const CreatorStep5 = ({ onFinish }) => {
   const navigate = useNavigate();
   const [copied, setCopied] = useState(false);
 
@@ -67,84 +66,63 @@ const CreatorStep5 = ({ formData, onFinish }) => {
   // };
 
 
-  const saveSetupData = async (userId, formData) => {
-    await setDoc(doc(db, "users", userId, "setup", "info"), {
-      mealDays: formData.mealDays,
-      fishDays: formData.fishDays,
-      otherDays: formData.otherDays,
-      voteDeadline: formData.voteDeadline,
-      createdAt: new Date(),
-    });
-    console.log("setup データ保存完了")
-  };
+  // const saveSetupData = async (userId, formData) => {
+  //   await setDoc(doc(db, "users", userId, "setup", "info"), {
+  //     mealDays: formData.mealDays,
+  //     fishDays: formData.fishDays,
+  //     otherDays: formData.otherDays,
+  //     voteDeadline: formData.voteDeadline,
+  //     createdAt: new Date(),
+  //   });
+  //   console.log("setup データ保存完了")
+  // };
 
 
 
-  const handleFinish = async () => {
-    if (!auth.currentUser) return alert("ログインが必要です");
-    const userId = auth.currentUser.uid;
+  const handleFinish = () => {
+      if (onFinish) onFinish();
 
-    try {
-      await setDoc(doc(db, "users", userId), {
-        email: formData.email,
-        createdAt: new Date(),
-      }, { merge: true });
-      await saveSetupData(userId, formData);
+      navigate('/host', { replace: true });
 
-      // await copyBaseMenuToUser(userId);
-      // await copyIngredientsToUser(userId);
+    };
 
-      // if(formData.selectMenus){
-      //   await copyAvailableMenus(userId,formData.selectMenus);
-      // }
+    const handleCopy = () => {
+      navigator.clipboard.writeText(inviteUrl)
+        .then(() => setCopied(true))
+        .catch(() => alert("コピーできませんでした。"));
 
-      console.log("ユーザー用データ作成完了");
-      onFinish();
-      navigate('/host');
+      setTimeout(() => setCopied(false), 2000);
     }
-    catch (error) {
-      console.error("データコピー失敗:", error);
-      alert("エラーが発生しました")
+
+    const handleLine = () => {
+      const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(inviteUrl)}`
+      window.open(lineUrl, '_blank');
     }
-  };
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(inviteUrl)
-      .then(() => setCopied(true))
-      .catch(() => alert("コピーできませんでした。"));
+    return (
+      <div className="CreateStep5">
+        <div className="container">
+          <img className="CreateStep-img" src="/p1.png" alt="" />
 
-    setTimeout(() => setCopied(false), 2000);
-  }
+          <div className="CreateStep_inner">
+            <img className="CreateStep_stepimg" src="/step4.png" alt="ステップ" />
+            <h3>家族投票を行うために、家族とアプリを共有しよう。</h3>
 
-  const handleLine = () => {
-    const lineUrl = `https://line.me/R/msg/text/?${encodeURIComponent(inviteUrl)}`
-    window.open(lineUrl, '_blank');
-  }
+            <p className="CreateStep_tex1">下記のURLを家族に送って、アプリをインストールし、家族と共有しよう。</p>
 
-  return (
-    <div className="CreateStep5">
-      <div className="container">
-        <img className="CreateStep-img" src="/p1.png" alt="" />
-
-        <div className="CreateStep_inner">
-          <img className="CreateStep_stepimg" src="/step4.png" alt="ステップ" />
-          <h3>家族投票を行うために、家族とアプリを共有しよう。</h3>
-
-          <p className="CreateStep_tex1">下記のURLを家族に送って、アプリをインストールし、家族と共有しよう。</p>
-
-          <div className="introduction_box">
-            <p className="introduction_url">{inviteUrl}</p>
-            <div className="introduction_box_inner">
-              <button onClick={handleCopy} className='appbutton3'>{copied ? "コピーしました" : "コピー"}</button>
-              <button onClick={handleLine} className='appbutton3'>LINEで送る</button>
+            <div className="introduction_box">
+              <p className="introduction_url">{inviteUrl}</p>
+              <div className="introduction_box_inner">
+                <button onClick={handleCopy} className='appbutton3'>{copied ? "コピーしました" : "コピー"}</button>
+                <button onClick={handleLine} className='appbutton3'>LINEで送る</button>
+              </div>
             </div>
-          </div>
-          <button className='CreateStepbutton' onClick={handleFinish}>完了する</button>
+            <button className='CreateStepbutton' onClick={handleFinish}>完了する</button>
 
+          </div>
         </div>
       </div>
-    </div>
-  )
-}
+    )
+  }
 
-export default CreatorStep5
+  export default CreatorStep5
