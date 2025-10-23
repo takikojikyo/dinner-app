@@ -27,6 +27,7 @@ const CreatorStep1 = ({ onNext,setIsFirstTime }) => {
       const user=userCredential.user;
       await setDoc(doc(db,"users",user.uid),{
         email:user.email,
+        role: "host",
         createdAt:new Date(),
       });
 
@@ -59,6 +60,7 @@ const CreatorStep1 = ({ onNext,setIsFirstTime }) => {
       if(!docSnap.exists()){
         await setDoc(userRef,{
           email:googleEmail,
+          role: "host",
           createdAt:new Date(),
         })
       }

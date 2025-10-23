@@ -1,19 +1,20 @@
 import './GestStep.css';
 
-
 import { useNavigate, useOutletContext } from 'react-router-dom';
 
 
 
 
-const Gest_thanks = () => {
 
+
+const Gest_thanks = () => {
   const navigate = useNavigate();
   const { setMenuList } = useOutletContext();
-  const handleContineVote = () => {
+
+  const handleContinueVote = () => {
     setMenuList([]);
     navigate("/gest");
-  }
+  };
 
   return (
 
@@ -24,19 +25,22 @@ const Gest_thanks = () => {
           <img className="gestthanks_img1" src="/g1.png" alt="thankyou" />
           <img className="gestthanks_img2" src="/g2.png" alt="女性" />
 
-          <div className="Gest_thanks_box">
-            <h3>来週は木曜日までに投票してね!</h3>
-            <button
-              className='GestStepbutton'
-              onClick={handleContineVote}>
-              続けて投票する
-            </button>
+
+
+
+            <div className="Gest_thanks_box">
+              <h3>来週は木曜日までに投票してね!</h3>
+              <button className='GestStepbutton' onClick={handleContinueVote}>
+                続けて投票する
+              </button>
+            </div>
+
           </div>
 
           <img src="/g3.png" alt="女性" />
         </div>
       </div>
-    </div>
+
   );
 }
 

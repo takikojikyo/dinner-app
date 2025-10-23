@@ -74,7 +74,11 @@
   margin-right: var(--space-sm);
 }
 
-
+.geststep1_message{
+  font-size: var(--font-md);
+  font-weight: bold;
+  margin-bottom: var(--space-md);
+}
 
 /* GestStep2 */
 .Geststep2_button{
