@@ -1,8 +1,9 @@
 import { collection, addDoc, where, query, getDocs } from 'firebase/firestore';
 import { db } from '../../firebase';
 import './GestStep.css';
-import {  useNavigate, useOutletContext, useParams } from 'react-router-dom';
+import { useNavigate, useOutletContext, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import { getWeekId } from './GetWeekId';
 
 
 
@@ -10,7 +11,7 @@ const GestStep3 = () => {
 
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const { menuList,gestId, setMenuList, setEditingIndex } = useOutletContext();
+  const { menuList, gestId, setMenuList, setEditingIndex } = useOutletContext();
 
   // const { hostId } = useParams();
   const { hostId: paramHostId } = useParams();
@@ -25,7 +26,7 @@ const GestStep3 = () => {
     setMenuList(newmenus)
   }
 
-    const handleEdit = (index) => {
+  const handleEdit = (index) => {
     setEditingIndex(index);
     navigate("/gest/GestStep2"); // Step2に戻る
   };
@@ -36,16 +37,11 @@ const GestStep3 = () => {
       alert("通信準備中です。少し待ってからもう一度お試しください。");
       return;
     }
-
-    const storedWeekId=localStorage.getItem("currentWeekId");
-    const now = new Date();
-    const year = now.getFullYear();
-    const weekNumber = Math.ceil((now.getDate() - now.getDay() + 1) / 7);
-    const weekId = storedWeekId||`${year}-${weekNumber}`;
+    const currentWeekId = getWeekId(0);
 
     setLoading(true);
     try {
-      const votesRef = collection(db, "weeklyPlans", hostId, "week", weekId, "votes");
+      const votesRef = collection(db, "weeklyPlans", hostId, "week", currentWeekId, "votes");
       const q = query(votesRef, where("gestId", "==", gestId));
       const snap = await getDocs(q);
       if (!snap.empty) {
@@ -61,8 +57,16 @@ const GestStep3 = () => {
           createdAt: new Date(),
         });
       }
+      let votedWeeks = JSON.parse(localStorage.getItem("votedWeeks") || "[]");
+      if (!votedWeeks.includes(currentWeekId)) {
+        votedWeeks.push(currentWeekId);
+        votedWeeks = votedWeeks.slice(-2); 
+        localStorage.setItem("votedWeeks", JSON.stringify(votedWeeks));
+      }
+
 
       alert("投票を保存しました！");
+      setMenuList([]);
       navigate("/gest/Gest_thanks");
 
     } catch (error) {
@@ -92,7 +96,7 @@ const GestStep3 = () => {
                 <div className="Geststep3_box1">
                   <button
                     className='GestStep3_button1'
-                    onClick={() => {handleEdit(index)}}>
+                    onClick={() => { handleEdit(index) }}>
                     メニューを編集</button>
                   <button
                     onClick={() => handleDeleteclick(index)}

@@ -41,6 +41,7 @@ const This_Week_Menu = () => {
               <p key={i}>{item}</p>
             ))
           }
+          <button>編集</button>
         </div>
 
 

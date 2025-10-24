@@ -13,33 +13,24 @@ const GestStep1 = () => {
   const [message, setMessage] = useState("");
   const [canVote, setCanVote] = useState(true);
 
-const key=location.key;
+
   useEffect(() => {
     const currentWeekId = getWeekId(0);
-    const nextWeekId = getWeekId(1);
 
-    const updateMessage = () => {
+
     let votedWeeks = JSON.parse(localStorage.getItem("votedWeeks") || "[]");
-    votedWeeks = votedWeeks.filter(w => w === currentWeekId || w === nextWeekId);
+    votedWeeks = votedWeeks.filter(w => w === currentWeekId);
     localStorage.setItem("votedWeeks", JSON.stringify(votedWeeks));
 
-    const hasCurrentWeekVote = votedWeeks.includes(currentWeekId);
-    const hasNextWeekVote = votedWeeks.includes(nextWeekId);
-
-    if (hasCurrentWeekVote && hasNextWeekVote) {
+    if (votedWeeks.includes(currentWeekId)) {
       setMessage("投票ありがとう！来週また投票してね。");
       setCanVote(false);
-    } else if (hasCurrentWeekVote) {
-      setMessage("今週は投票済みだよ。来週分を投票してね！");
-      setCanVote(true);
     } else {
       setMessage("食べたい料理は何かな？？");
       setCanVote(true);
     }
-  };
 
-  updateMessage();
-  }, [key]);
+  }, []);
 
 
 
@@ -47,11 +38,12 @@ const key=location.key;
     return (
       <div className="GestStep1">
         <div className="container">
+          <div className="Step_inner">
+            <p className="geststep1_message">{message}</p>
 
-          <p className="geststep1_message">{message}</p>
-
-          <img className="gestthanks_img1" src="/g1.png" alt="thankyou" />
-          <img className="gestthanks_img2" src="/g2.png" alt="女性" />
+            <img className="gestthanks_img1" src="/g1.png" alt="thankyou" />
+            <img className="gestthanks_img2" src="/g2.png" alt="女性" />
+          </div>
         </div>
       </div>
     )

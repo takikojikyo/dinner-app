@@ -1,20 +1,46 @@
+import { useEffect, useState } from 'react';
 import './GestStep.css';
-
-import { useNavigate, useOutletContext } from 'react-router-dom';
-
-
-
-
+import { useNavigate } from 'react-router-dom';
+import { auth, db } from '../../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 
 const Gest_thanks = () => {
   const navigate = useNavigate();
-  const { setMenuList } = useOutletContext();
+  const [selectDay, setSelectDay] = useState("");
 
-  const handleContinueVote = () => {
-    setMenuList([]);
-    navigate("/gest");
-  };
+
+  useEffect(() => {
+    const fetchVoteDeadline = async () => {
+      try {
+        const user = auth.currentUser;
+        if (!user) return;
+        const docRef = doc(db, "users", user.uid, "setup", "info");
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          const data = docSnap.data();
+          const englishDay = data.voteDeadline; // 例: "Thursday"
+          const daysMap = {
+            monday: "月曜日",
+          tuesday: "火曜日",
+          wednesday: "水曜日",
+          thursday: "木曜日",
+          friday: "金曜日",
+          saturday: "土曜日",
+          sunday: "日曜日",
+          };
+
+          const key = englishDay?.split(" ")[0];
+          setSelectDay(daysMap[key] || englishDay);
+        }
+
+      } catch (error) {
+        console.error(error)
+      }
+    }
+    fetchVoteDeadline();
+  }, [])
+
 
   return (
 
@@ -26,20 +52,18 @@ const Gest_thanks = () => {
           <img className="gestthanks_img2" src="/g2.png" alt="女性" />
 
 
-
-
-            <div className="Gest_thanks_box">
-              <h3>来週は木曜日までに投票してね!</h3>
-              <button className='GestStepbutton' onClick={handleContinueVote}>
-                続けて投票する
-              </button>
-            </div>
-
+          <div className="Gest_thanks_box">
+            <h3>{selectDay ? `来週は${selectDay}までに投票してね!` : "読み込み中..."}</h3>
+            <button className='GestStepbutton' onClick={() => navigate("/gest")}>
+              TOPに戻る
+            </button>
           </div>
 
-          <img src="/g3.png" alt="女性" />
         </div>
+
+        <img src="/g3.png" alt="女性" />
       </div>
+    </div>
 
   );
 }
