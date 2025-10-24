@@ -127,3 +127,25 @@ left: -15px;
 }
 
 
+/* StepWarning */
+.step-warning-box{
+  background: var(--color-bg);
+  margin-top: var(--space-md);
+  padding: var(--space-xs);
+  border: 3px dotted red;
+  color: red;
+  border-radius: var(--radius-md);
+}
+.step-warning-box h4{
+  margin-bottom: 3px;
+  font-size: var(--font-md);
+}
+.step-warning-box a{
+  border: 3px dotted red;
+  color: var(--color-bg);
+  background: red;
+  padding:3px var(--space-md);
+  margin-top: var(--space-xs);
+  display: inline-block;
+  border-radius: var(--radius-md);
+}

@@ -26,21 +26,39 @@ const IngredientsInputMenuEdit3 = ({
 
   useEffect(() => {
     const fetchIngredientMaster = async (userId) => {
-      const snapshot = await getDocs(collection(db, "users", userId, "ingredientsMaster"));
-      const data = snapshot.docs.map(docSnap => {
-        const d = docSnap.data();
-        return {
-          name: d.name, aliases: d.aliases || []
-        };
-      });
-      setAllIngredients(data);
+      //   const snapshot = await getDocs(collection(db, "ingredientsMaster"));
+      //   const data = snapshot.docs.map(docSnap => {
+      //     const d = docSnap.data();
+      //     return {
+      //       name: d.name, aliases: d.aliases || []
+      //     };
+      //   });
+      //   setAllIngredients(data);
+      // };
+      // const unsubscribe = onAuthStateChanged(auth, (user) => { if (!user) return; fetchIngredientMaster(user.uid); }); 
+      // return () => unsubscribe();
+      try {
+        const commonSnap = await getDocs(collection(db, "ingredientsMaster"));
+        const commonData = commonSnap.docs.map(docSnap => {
+          const d = docSnap.data();
+          return { name: d.name, aliases: d.aliases || [] }
+        });
+
+        const userSnap = await getDocs(collection(db, "users", userId, "ingredientsMaster"));
+        const userData = userSnap.docs.map(docSnap => {
+          const d = docSnap.data();
+          return { name: d.name, aliases: d.aliases || [] }
+        });
+        setAllIngredients([...commonData, ...userData]);
+      } catch (error) {
+        console.error("材料取得失敗:", error);
+      }
     };
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (!user) return;
       fetchIngredientMaster(user.uid);
     });
     return () => unsubscribe();
-
   }, []);
 
   useEffect(() => {
@@ -49,10 +67,6 @@ const IngredientsInputMenuEdit3 = ({
       return;
     }
     const handler = setTimeout(() => {
-      if (customIngredient.trim() === "") {
-        setFilteredSuggestions([]);
-        return;
-      }
 
       const inputHira = wanakana.toHiragana(customIngredient.trim());
       const filtered = allIngredients.filter(item => {
@@ -69,25 +83,29 @@ const IngredientsInputMenuEdit3 = ({
     return () => clearTimeout(handler);
   }, [customIngredient, allIngredients]);
 
+
   const handleAddIngredient = async (selected) => {
     if (!selected) return;
     const name = selected.name;
-
-    if (!ingredient.includes(name)) {
-      setIngredient(prev => [...prev, name])
+    if (!name) return;
+    if (ingredient.includes(name)) {
+      alert("すでに追加されています")
+      return;
     };
 
+    setIngredient(prev => [...prev, name])
     // DBにない正規名なら追加
     const exists = allIngredients.some(i => i.name === name);
     if (!exists) {
       try {
         const userId = auth.currentUser.uid;
         const safeId = encodeURIComponent(name);
+        
         await setDoc(doc(db, "users", userId, "ingredientsMaster", safeId), { name, aliases: [] });
-        setAllIngredients(prev => [...prev, { name, aliases: [] }]);
-
+        setAllIngredients(prev => [...prev, { name, aliases: [] }])
+       
         await setDoc(doc(db, "users", userId, "ingredients", safeId), { name });
-
+        setIngredient(prev=>[...prev,name]);
       } catch (error) {
         console.error("材料追加失敗:", error);
         alert("材料の追加に失敗しました");
@@ -115,7 +133,7 @@ const IngredientsInputMenuEdit3 = ({
         />
         {
           filteredSuggestions.length > 0 && (
-            <ul className='autocomplete-suggestions'>
+            <ul className='autocomplete-suggestions' role="listbox">
               {
                 filteredSuggestions.map((item) => (
                   <li

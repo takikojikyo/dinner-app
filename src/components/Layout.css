@@ -102,7 +102,6 @@ header{
   padding: 0.5em; 
   border-radius: var(--radius-md);
   transition: all 0.5s;
-  width: 180px;
 }
 .Toggle_mode_host{
   background: var(--color-brand-light);
@@ -161,7 +160,7 @@ margin-bottom: var(--space-md);
 padding-bottom: var(--space-xs);
 border-bottom: 1px solid var(--color-border);
 }
-.Header_menu_list>li>a,.header_box{
+.Header_menu_list>li>.Header_menu_button,.header_box{
   width: 100%;
   display: flex;
 align-items: center;
@@ -185,6 +184,15 @@ flex-direction: row;
 .Header_menu_list ul>li span{
   font-size: var(--font-sm);
 }
+.Header_menu_list .Header_menu_button{
+  transition: all 0.5s;
+  color: var(--color-text);
+  font-size: var(--font-base);
+  text-align: left;
+}
+.Header_menu_list .Header_menu_button:hover{
+  opacity: 0.5;
+}
 .Header_menu_apptitle{
   display: flex;
   align-items: center;
@@ -194,10 +202,8 @@ flex-direction: row;
   left: 50%;
   transform: translateX(-50%);
 }
-.Header_menu_list a:hover{
-  transition: all 0.5s;
-  opacity: 0.5;
-}
+
+
 .Header_menu_apptitle img{
   width: 50px;
 }
@@ -228,15 +234,24 @@ footer p{
 .HeaderBottom_Gest{
   background: var(--color-brand-light);
 }
-.HeaderBottom_Gest .container{
-    justify-content: flex-end;
-}
 .Toggle_mode_Gest{
    background: var(--color-accent);
   border: 1px solid var(--color-accent);
 }
 .Toggle_mode_Gest:hover{
   background:rgba(255,181,52,0.6);
+}
+.gest_menu_button{ 
+  padding: 0.5em; 
+  border-radius: var(--radius-md);
+  transition: all 0.5s;
+  background: var(--color-text);
+  color: var(--color-bg);
+  border: 1px solid var(--color-text);
+}
+.gest_menu_button:hover{
+    background: var(--color-bg);
+  color: var(--color-text);
 }
 
 
